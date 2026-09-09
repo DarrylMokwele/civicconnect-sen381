@@ -1,0 +1,17 @@
+## References
+
+Bass, L., Clements, P., & Kazman, R. (2021). *Software architecture in practice* (4th ed.). Addison-Wesley Professional.
+
+International Organization for Standardization. (2018). *Risk management — Guidelines* (ISO Standard No. 31000:2018). https://www.iso.org/standard/65694.html
+
+ISO/IEC/IEEE. (2018). *Systems and software engineering — Life cycle processes — Requirements engineering* (ISO/IEC/IEEE Standard No. 29148:2018). IEEE. https://standards.ieee.org/ieee/29148/7101/
+
+PCI Security Standards Council. (2022). *Payment Card Industry (PCI) Data Security Standard: Requirements and testing procedures version 4.0*. PCI SSC.
+
+Republic of South Africa. (2013). *Protection of Personal Information Act 4 of 2013*. Government Gazette, 581(37067).
+
+SEN381 Teaching Team. (2026a). *CivicConnect Master Project Brief: Integrated team software engineering project*. Belgium Campus iTversity.
+
+SEN381 Teaching Team. (2026b). *CivicConnect Project Milestone 1: Engineering foundation & requirements baseline*. Belgium Campus iTversity.
+
+Sommerville, I. (2016). *Software engineering* (10th ed.). Pearson.
