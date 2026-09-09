@@ -1,0 +1,15 @@
+# Team Governance - CODEOWNERS
+# Requires approval from owners when files in these paths are modified
+
+# Traceability, Governance & Baseline (Member C)
+CODEOWNERS @Member-A-DarrylMokwele
+docs/governance/ @Member-A-DarrylMokwele
+
+# Requirements Lead (Member A)
+docs/requirements/ @Member-A-Maqoba_Ryan_Mphelo
+
+# Scope & Risk Lead (Member B)
+docs/scope_baseline.md @Member-B-Jonathan Rossouw
+docs/risk_register.md @Member-B-Jonathan Rossouw
+docs/constraints.md @Member-B-Jonathan Rossouw
+docs/forward_engineering.md @Member-B-Jonathan Rossouw
