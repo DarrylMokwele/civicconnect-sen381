@@ -3,7 +3,7 @@
 
 * **Team:** Maqoba Mphelo (A — Problem, Stakeholders & Requirements), Jonathan Rossouw (B — Scope,
   Constraints & Risk), Darryl Mokwele (C — Traceability, Governance & Document Control)
-* **Version:** v1.0 — [insert date]
+* **Version:** v1.0 — [09/09/2026]
 * **Status:** Ready for baseline sign-off — requirements register gap resolved (see `00-gap-flag-RESOLVED.md`)
 
 ---
