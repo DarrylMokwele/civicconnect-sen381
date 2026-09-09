@@ -2,7 +2,7 @@
 
 * **Milestone:** M1 — Engineering Foundation & Requirements Baseline
 * **Document under review:** PED v1.0
-* **Review date:** [insert date]
+* **Review date:** [09/09/2026]
 * **Attendees:** Maqoba Mphelo (Member A), Jonathan Rossouw (Member B), Darryl Mokwele (Member C)
 
 ## Review Checklist
