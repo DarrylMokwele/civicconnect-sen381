@@ -1,7 +1,7 @@
 # ✅ RESOLVED — Requirements Register Gap
 
-**Raised by:** Darryl Mokwele (Member C) — [original date]
-**Resolved by:** Maqoba Mphelo (Member A) — [insert date A pushed the fix]
+**Raised by:** Darryl Mokwele (Member C) — [08/09/2026]
+**Resolved by:** Maqoba Mphelo (Member A) — [09/09/2026]
 **Status:** Closed
 
 ## Original issue
