@@ -5,6 +5,8 @@ using Application.Notifications;
 using Infrastructure.Notifications;
 using Application.ServiceRequests;
 using Infrastructure.ServiceRequests;
+using Application.Locations;
+using Infrastructure.Location;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,6 +28,10 @@ builder.Services.AddScoped<
 builder.Services.AddScoped<
     IServiceRequestLifecycleService,
     ServiceRequestLifecycleService>();
+
+builder.Services.AddScoped<
+    ILocationResolver,
+    ExternalLocationResolver>();
 
 // Add services to the container.
 
