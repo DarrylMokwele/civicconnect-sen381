@@ -3,7 +3,7 @@
 **Milestone:** Milestone 2  
 **Document Type:** Persistence and Database Evaluation  
 **Project:** CivicConnect  
-**Status:** Proposed – Pending Team Review  
+**Status:** Proposed  
 **Owner:** Member 2  
 **Related Documents:**  
 - `docs/data/data-model.md`
