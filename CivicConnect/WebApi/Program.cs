@@ -1,11 +1,21 @@
 using Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
+using Application.Abstractions;
+using Application.Notifications;
+using Infrastructure.Notifications;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<CivicConnectDbContext>(options =>
     options.UseSqlServer(
         builder.Configuration.GetConnectionString("CivicConnectDatabase")));
+
+builder.Services.AddScoped<
+    INotificationService,
+    NotificationService>();
+
+builder.Services.AddScoped<
+    ServiceRequestStatusChangedHandler>();
 
 // Add services to the container.
 
