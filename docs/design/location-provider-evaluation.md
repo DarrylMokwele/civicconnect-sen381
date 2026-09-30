@@ -3,7 +3,7 @@
 **Milestone:** Milestone 2  
 **Document Type:** Design Evaluation  
 **Project:** CivicConnect  
-**Status:** Proposed – Pending Team Review  
+**Status:** Accepted
 **Owner:** Member 3  
 **Design Problem:** External Location Provider Boundary  
 
