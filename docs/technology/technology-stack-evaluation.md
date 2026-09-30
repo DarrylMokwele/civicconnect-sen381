@@ -363,19 +363,14 @@ Development work should follow a traceable workflow:
 
 Issue
   |
-  v
 Branch
   |
-  v
 Commits
   |
-  v
 Pull Request
   |
-  v
 Review
   |
-  v
 Merge
 
 This provides repository evidence linking engineering work to implementation.
@@ -473,10 +468,8 @@ The intended dependency direction is:
 
 WebApi
    |
-   v
 Application
    |
-   v
 Domain
 
 Infrastructure
@@ -505,16 +498,12 @@ For example:
 
 ServiceRequest
       |
-      v
 StatusChangedEvent
       |
-      v
 Application Handler
       |
-      v
 Notification Abstraction
       |
-      v
 Infrastructure Provider
 
 The final notification implementation remains subject to the approved
@@ -527,13 +516,10 @@ boundary such as:
 
 Application
      |
-     v
 ILocationResolver
-     ^
      |
 Infrastructure Adapter
      |
-     v
 External Location Provider
 
 This allows application logic to depend on an abstraction rather than directly
@@ -683,7 +669,7 @@ Milestone 2 implementation:
 | Backend | ASP.NET Core | Proposed |
 | API | ASP.NET Core Web API | Proposed |
 | Persistence ORM | Entity Framework Core | Proposed |
-| Database | Relational database – product TBD | Pending |
+| Database | Microsoft SQL Server | Selected |
 | Automated Testing | xUnit | Proposed |
 | Dependency Management | NuGet | Proposed |
 | Source Control | Git | Existing |
@@ -731,17 +717,3 @@ completed:
 - [ ] ADR/decision record is created.
 - [ ] Initial application implementation begins.
 - [ ] Initial automated tests are added.
-
----
-
-# 22. Next Actions
-
-1. Define the initial CivicConnect data model.
-2. Select the relational database.
-3. Finalise the persistence approach.
-4. Record the technology/persistence decisions in the appropriate ADRs.
-5. Create the initial .NET solution structure.
-6. Implement the initial Domain and persistence components.
-7. Implement the approved Member 3 design decisions.
-8. Add automated verification.
-9. Update the PED and RTM with actual implementation evidence.
