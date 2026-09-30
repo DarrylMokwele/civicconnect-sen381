@@ -1091,17 +1091,42 @@ verified until the corresponding code and automated tests exist.
 
 ---
 
+## Implementation Evidence
+
+The selected notification architecture is reflected in the initial
+CivicConnect implementation.
+
+A service-request status change produces a
+`ServiceRequestStatusChangedEvent`.
+
+`ServiceRequestStatusChangedHandler` handles the event and delegates
+notification creation through the `INotificationService` abstraction.
+
+`NotificationService` provides the Infrastructure implementation and
+persists notification records through `CivicConnectDbContext`.
+
+The implementation therefore separates the service-request lifecycle
+logic from notification persistence and provides an extension point
+for future delivery mechanisms.
+
+Current Milestone 2 verification demonstrates that a successful
+service-request status transition creates a notification record,
+while an invalid lifecycle transition is rejected before notification
+creation.
+
+---
+
 # 41. Next Actions
 
-- [ ] Review the notification architecture.
-- [ ] Confirm the event-driven approach.
-- [ ] Create the Notification Architecture ADR.
-- [ ] Reconcile the ADR number with the team's ADR register.
-- [ ] Update the PED with the selected design.
-- [ ] Update the RTM with the design evidence.
-- [ ] Implement the required domain event(s).
-- [ ] Implement the notification handler.
-- [ ] Implement `INotificationService`.
-- [ ] Add a fake/test notification implementation.
-- [ ] Add automated tests.
-- [ ] Add implementation/test evidence to the RTM.
+- [x] Review the notification architecture.
+- [x] Confirm the event-driven approach.
+- [x] Create the Notification Architecture ADR.
+- [x] Reconcile the ADR number with the team's ADR register.
+- [x] Update the PED with the selected design.
+- [x] Update the RTM with the design evidence.
+- [x] Implement the required domain event(s).
+- [x] Implement the notification handler.
+- [x] Implement `INotificationService`.
+- [x] Add a fake/test notification implementation.
+- [x] Add automated tests.
+- [x] Add implementation/test evidence to the RTM.
