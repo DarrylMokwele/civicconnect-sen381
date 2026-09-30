@@ -1,4 +1,11 @@
+using Infrastructure.Persistence;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<CivicConnectDbContext>(options =>
+    options.UseSqlServer(
+        builder.Configuration.GetConnectionString("CivicConnectDatabase")));
 
 // Add services to the container.
 
