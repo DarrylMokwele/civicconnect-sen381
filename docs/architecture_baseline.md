@@ -60,13 +60,15 @@ graph TD
     Infrastructure_Layer -.->|Implements Interfaces| Application_Layer
     Domain_Layer -->|Persisted By| DBContext
     Presentation_Layer -->|Enforces Permissions| RBACService
+```
 
-    ```mermaid
+### Sequence Trace Diagram
+```mermaid
 sequenceDiagram
     autonumber
     actor Staff as Operational Staff
     participant UI as Presentation Layer
-    participant App as Application Layer (Handler)
+    participant App as Application Layer
     participant FSM as Domain State Engine
     participant Repo as Infrastructure Repository
     participant Audit as Immutable Audit Logger
