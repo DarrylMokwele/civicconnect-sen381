@@ -1,18 +1,57 @@
-# CivicConnect — Project Engineering Document (PED) v1.0
-### Milestone 1 — Engineering Foundation & Requirements Baseline
+# CivicConnect — Project Engineering Document (PED) v2.0
 
-* **Team:** Maqoba Mphelo (A — Problem, Stakeholders & Requirements), Jonathan Rossouw (B — Scope,
-  Constraints & Risk), Darryl Mokwele (C — Traceability, Governance & Document Control)
-* **Version:** v1.0 — [09/09/2026]
-* **Status:** Ready for baseline sign-off — requirements register gap resolved (see `00-gap-flag-RESOLVED.md`)
+### Milestone 2 — Architecture, Technology & Initial Design Baseline
+
+**Project:** CivicConnect  
+**Module:** SEN381  
+**Document Version:** 2.0  
+**Milestone:** Milestone 2  
+**Status:** Integration Baseline — Pending Final Team Approval  
+**Team:** Logic Error  
+**Updated:** 30 September 2026
 
 ---
 
-## How this document is organised
+## Document Purpose
 
-This PED integrates the controlled artefacts produced across the team into one coherent baseline. Each
-section below points to the authoritative source file in the repository rather than duplicating content,
-so there is a single place each artefact is maintained.
+This Project Engineering Document (PED) is the authoritative engineering
+baseline for CivicConnect at Milestone 2.
+
+PED v2.0 evolves the Milestone 1 Engineering Foundation and Requirements
+Baseline by incorporating the architecture baseline, Architectural
+Significant Requirements, data and persistence decisions, technology
+selection, project-specific design decisions, initial implementation,
+verification evidence, updated traceability and governance evidence.
+
+Milestone 1 requirements remain the approved requirements baseline unless
+a change is explicitly recorded through the project's controlled change
+process.
+
+---
+
+## How This Document Is Organised
+
+PED v2.0 consolidates and references the following engineering evidence:
+
+1. Problem and Business Need
+2. Stakeholder Analysis
+3. Scope Baseline
+4. Requirements and Acceptance Criteria
+5. Requirements Evolution
+6. Constraints and Architectural Significant Requirements
+7. Architecture Baseline
+8. Data Model and Persistence Strategy
+9. Technology Stack
+10. Project-Specific Design Decisions
+11. Forward Engineering and Initial Implementation
+12. Requirements Traceability
+13. Verification Evidence
+14. Risk Register
+15. Engineering Decisions and ADRs
+16. GitHub and Team Governance
+17. AI Usage Register
+18. Known Limitations and Outstanding Work
+19. Milestone 2 Baseline Sign-Off
 
 ## 1. Problem & Business Need
 See: `docs/requirements/problem-and-business-need.md`
