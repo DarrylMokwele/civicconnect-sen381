@@ -1,0 +1,17 @@
+# Visual Studio
+.vs/
+**/.vs/
+**/FileContentIndex/
+*.vsidx
+
+# Build output
+bin/
+obj/
+**/bin/
+**/obj/
+
+# Visual Studio user files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates

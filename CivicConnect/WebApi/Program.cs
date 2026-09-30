@@ -1,0 +1,66 @@
+using Infrastructure.Persistence;
+using Microsoft.EntityFrameworkCore;
+using Application.Abstractions;
+using Application.Notifications;
+using Infrastructure.Notifications;
+using Application.ServiceRequests;
+using Infrastructure.ServiceRequests;
+using Application.Locations;
+using Infrastructure.Location;
+
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<CivicConnectDbContext>(options =>
+    options.UseSqlServer(
+        builder.Configuration.GetConnectionString("CivicConnectDatabase")));
+
+builder.Services.AddScoped<
+    INotificationService,
+    NotificationService>();
+
+builder.Services.AddScoped<
+    ServiceRequestStatusChangedHandler>();
+
+builder.Services.AddScoped<
+    IStatusTransitionPolicy,
+    StatusTransitionPolicy>();
+
+builder.Services.AddScoped<
+    IServiceRequestLifecycleService,
+    ServiceRequestLifecycleService>();
+
+builder.Services.AddScoped<
+    ILocationResolver,
+    ExternalLocationResolver>();
+
+// Add services to the container.
+
+builder.Services.AddControllers();
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
+var app = builder.Build();
+// Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
+{
+    using var scope = app.Services.CreateScope();
+
+    var dbContext =
+        scope.ServiceProvider
+            .GetRequiredService<CivicConnectDbContext>();
+
+    await DbInitializer.SeedAsync(dbContext);
+
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+
+
+app.UseHttpsRedirection();
+
+app.UseAuthorization();
+
+app.MapControllers();
+
+app.Run();
