@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using Application.Abstractions;
 using Application.Notifications;
 using Infrastructure.Notifications;
+using Application.ServiceRequests;
+using Infrastructure.ServiceRequests;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +18,14 @@ builder.Services.AddScoped<
 
 builder.Services.AddScoped<
     ServiceRequestStatusChangedHandler>();
+
+builder.Services.AddScoped<
+    IStatusTransitionPolicy,
+    StatusTransitionPolicy>();
+
+builder.Services.AddScoped<
+    IServiceRequestLifecycleService,
+    ServiceRequestLifecycleService>();
 
 // Add services to the container.
 

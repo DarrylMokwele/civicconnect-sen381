@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <Folder Include="Locations\" />
-    <Folder Include="ServiceRequests\" />
   </ItemGroup>
 
   <ItemGroup>
