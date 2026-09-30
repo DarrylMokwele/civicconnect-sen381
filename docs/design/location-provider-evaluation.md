@@ -1155,16 +1155,39 @@ verified until corresponding code and automated tests exist.
 
 ---
 
+## Implementation Evidence
+
+The selected provider-boundary approach has been reflected in the
+CivicConnect application structure.
+
+The Application layer defines the `ILocationResolver` abstraction,
+which prevents application logic from depending directly on a
+specific external geocoding provider.
+
+The Infrastructure layer provides `ExternalLocationResolver` as the
+adapter implementation.
+
+Dependency injection binds `ILocationResolver` to
+`ExternalLocationResolver` in the Web API composition root.
+
+Initial automated tests verify the behaviour of the adapter boundary.
+
+The Milestone 2 implementation establishes the architectural
+integration boundary. A live third-party geocoding provider has not
+yet been integrated and remains future implementation work.
+
+---
+
 # 46. Next Actions
 
-- [ ] Review the Adapter decision.
-- [ ] Confirm `ILocationResolver` as the application boundary.
-- [ ] Create the Location Provider ADR.
-- [ ] Reconcile the final ADR number with the team's ADR register.
-- [ ] Add the design decision to the PED.
-- [ ] Add design evidence to the RTM.
-- [ ] Implement `ILocationResolver`.
-- [ ] Implement a provider Adapter or test implementation.
-- [ ] Register the implementation through dependency injection.
-- [ ] Add automated tests.
-- [ ] Add implementation/test evidence to the RTM.
+- [x] Review the Adapter decision.
+- [x] Confirm `ILocationResolver` as the application boundary.
+- [x] Create the Location Provider ADR.
+- [x] Reconcile the final ADR number with the team's ADR register.
+- [x] Add the design decision to the PED.
+- [x] Add design evidence to the RTM.
+- [x] Implement `ILocationResolver`.
+- [x] Implement a provider Adapter or test implementation.
+- [x] Register the implementation through dependency injection.
+- [x] Add automated tests.
+- [x] Add implementation/test evidence to the RTM.
