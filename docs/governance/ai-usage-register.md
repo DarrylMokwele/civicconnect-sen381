@@ -1,31 +1,412 @@
-# CivicConnect — AI Usage Register — Milestone 1
+# CivicConnect AI Usage Register
 
-* **Owner:** Darryl Mokwele (Member C — Traceability, Governance & Document Control)
-* **Purpose:** Record material AI-assisted work and the human verification applied. AI output is not a
-  source and does not replace credible referencing or human verification (Section 9.1, M1 brief).
-
-| Entry ID | Date | Team Member | Artefact | AI Tool Used | What AI Was Asked | What Was Verified / Changed / Rejected | Verified By |
-|---|---|---|---|---|---|---|---|
-| AI-001 | 7 Sept 2026 | Maqoba Mphelo | Problem statement, stakeholder analysis, functional/non-functional requirements, acceptance criteria | ChatGPT | Draft and structure the problem statement, stakeholder analysis and requirements artefacts; propose measurable NFR targets and acceptance criteria; assist with formatting/structure. | Compared the AI draft against the CivicConnect Master Project Brief and M1 task requirements before accepting; checked the referencing structure and source credibility. Accepted the formal structure and the solutions that matched independently-developed content. **Rejected:** redundant content (unnecessary introductions) and fabricated/false references, which were removed before publishing. | Maqoba Mphelo |
-| AI-002 | 8 Sept 2026 | Darryl Mokwele | rtm.md, decision-log.md, PED.md (initial draft) | Claude | Reconstruct a requirements register and RTM structure from cross-references found in already-written scope, risk and constraints documents, ahead of Member A's formal requirements register. | Flagged explicitly as DRAFT with a gap-flag note; every reconstructed FR/NFR wording and TBD acceptance criterion was withheld from being treated as final until Member A confirmed it. | Darryl Mokwele |
-| AI-003 | 9 Sept 2026 | Darryl Mokwele | rtm.md, decision-log.md, PED.md (finalised) | Claude | Update the RTM, decision log and PED against Member A's now-confirmed requirements register; verify no ID or AC reference in downstream docs was left unresolved. | Cross-checked every FR/NFR/AC ID cited in Jonathan's scope/risk/constraints/forward-engineering docs against Maqoba's final register; corrected DEC-001's AC reference from an invented interpretation to the actual confirmed AC-003.2/AC-006.2 wording. | Darryl Mokwele |
-| AI-004 | 7-9 Sept 2026 | Jonathan Rossouw | scope-baseline_md, constraints_md, forward_engineering.md, risk_register.md | Gemini | Structure student-researched engineering concepts into Markdown tables, formal technical prose, and academic citations (ISO 31000, ISO/IEC/IEEE 29148, POPIA). | Verified: Checked alignment against M1 brief rules, zero-budget constraints, and Maqoba's requirement IDs (FR-001–FR-016, NFR-001–NFR-006).  Rejected: Removed conversational citation tags; rejected AI's assumption that external map APIs were in-scope.  Changed: Deferred external mapping dependencies to protect M1 scope boundaries.  | Jonathan Rossouw |
-
-## Worked example for the defence 
-
-**Entry AI-001 — Maqoba Mphelo, requirements drafting**
-- **What AI produced:** A first draft of the problem statement, stakeholder analysis, and a structured set
-  of functional/non-functional requirements with proposed measurable NFR targets and acceptance criteria.
-- **What the human verified:** Checked the draft against the CivicConnect Master Project Brief and the M1
-  task requirements directly, and validated the referencing structure and source credibility rather than
-  trusting it at face value.
-- **What was rejected:** Two concrete problems were caught and removed — redundant filler content (unneeded
-  introductions) and **fabricated references** that did not correspond to real sources.
-- **What was kept:** The overall document structure and several requirement solutions that matched what
-  Maqoba had already independently worked out.
-- **Why this matters for accountability:** This is the strongest answer available to Indicative Defence
-  Question 9 ("Show one AI-assisted contribution. What did you verify, reject or change?") because it names
-  a specific, non-trivial error (invented references) that a human caught before it reached the baseline —
-  proof the team is checking AI output rather than rubber-stamping it.
+## Milestone 2 — Architecture, Technology & Initial Design Baseline
 
 
+---
+
+# Document Control
+
+| Field | Information |
+|---|---|
+| Project | CivicConnect |
+| Module | SEN381 |
+| Document | AI Usage Register |
+| Version | 2.0 |
+| Milestone | Milestone 2 |
+| Status | Updated Integration Baseline |
+
+
+---
+
+# 1. Purpose
+
+This document records the use of Artificial Intelligence (AI) tools
+during Milestone 2 development.
+
+The purpose of this register is to provide transparency regarding:
+
+- where AI assistance was used;
+- what activities AI supported;
+- how generated information was reviewed;
+- what decisions remained the responsibility of the development team.
+
+
+AI tools were used as an assistance mechanism only.
+
+All final engineering decisions, implementation choices and submitted
+artefacts were reviewed and approved by the project team.
+
+
+---
+
+# 2. AI Tool Used
+
+
+| Tool | Purpose |
+|---|---|
+| ChatGPT | Technical guidance, documentation assistance, code review support and clarification of software engineering concepts |
+
+
+---
+
+# 3. AI Usage Summary
+
+
+| Area | AI Assistance | Human/Team Responsibility |
+|---|---|---|
+| Architecture | Assisted with explaining architecture alternatives and structuring documentation | Team evaluated alternatives and selected the architecture |
+| Technology Evaluation | Assisted with comparing technology options | Team selected the final technology stack |
+| Database Design | Assisted with explaining persistence concepts and EF Core approaches | Team confirmed entities, relationships and implementation |
+| Design Decisions | Assisted with documenting alternatives and trade-offs | Team made final design decisions |
+| Implementation | Assisted with debugging, code explanations and development guidance | Team reviewed, tested and integrated code |
+| Testing | Assisted with identifying possible test scenarios | Team verified tests and evidence |
+| Documentation | Assisted with formatting and structuring documents | Team validated final documentation |
+
+
+---
+
+# 4. Detailed AI Usage Records
+
+
+## Record 001 — Architecture Documentation
+
+
+### Activity
+
+Creating and improving architecture documentation.
+
+
+### AI Assistance
+
+AI was used to:
+
+- explain architecture concepts;
+- compare architectural approaches;
+- improve documentation structure.
+
+
+### Human Validation
+
+The team reviewed architecture alternatives and selected the
+modular monolith architecture based on CivicConnect requirements.
+
+
+### Evidence
+
+Related artefacts:
+
+```
+ADR-001-modular-monolith-architecture.md
+
+Architecture Evaluation
+
+PED v2.0
+```
+
+
+---
+
+# Record 002 — Technology Stack Evaluation
+
+
+### Activity
+
+Evaluating possible technologies for CivicConnect.
+
+
+### AI Assistance
+
+AI was used to:
+
+- explain technology differences;
+- assist with comparison structure;
+- improve technical descriptions.
+
+
+### Human Validation
+
+The team selected:
+
+```
+C#
+
+.NET
+
+ASP.NET Core
+
+Entity Framework Core
+
+SQL Server
+
+xUnit
+```
+
+based on project requirements and constraints.
+
+
+### Evidence
+
+Related artefacts:
+
+```
+ADR-002-technology-stack-selection.md
+
+Technology Stack Evaluation
+```
+
+
+---
+
+# Record 003 — Persistence and Database Design
+
+
+### Activity
+
+Developing the persistence baseline.
+
+
+### AI Assistance
+
+AI was used to:
+
+- explain EF Core concepts;
+- assist with database design discussions;
+- suggest testing approaches.
+
+
+### Human Validation
+
+The team reviewed:
+
+- entity relationships;
+- database structure;
+- persistence implementation.
+
+
+### Evidence
+
+Related artefacts:
+
+```
+CivicConnectDbContext
+
+Entity Configurations
+
+EF Core Migration
+
+Persistence ADR
+```
+
+
+---
+
+# Record 004 — Lifecycle Governance Implementation
+
+
+### Activity
+
+Implementing controlled service-request lifecycle transitions.
+
+
+### AI Assistance
+
+AI was used to:
+
+- explain state-transition approaches;
+- assist with implementation structure;
+- suggest test cases.
+
+
+### Human Validation
+
+The team decided:
+
+- transition rules;
+- allowed transitions;
+- exception handling;
+- verification approach.
+
+
+### Evidence
+
+Implementation:
+
+```
+IStatusTransitionPolicy
+
+StatusTransitionPolicy
+
+ServiceRequestLifecycleService
+
+PATCH /api/ServiceRequests/{id}/status
+```
+
+
+Testing:
+
+```
+StatusTransitionPolicyTests
+
+ServiceRequestLifecycleServiceTests
+```
+
+
+---
+
+# Record 005 — Notification Architecture
+
+
+### Activity
+
+Designing notification handling.
+
+
+### AI Assistance
+
+AI was used to:
+
+- explain event-driven approaches;
+- assist with documentation.
+
+
+### Human Validation
+
+The team selected event-driven notification handling.
+
+
+### Evidence
+
+```
+ADR-004-notification-feedback-architecture.md
+
+ServiceRequestStatusChangedEvent
+
+ServiceRequestStatusChangedHandler
+
+NotificationService
+```
+
+
+---
+
+# Record 006 — External Location Provider Boundary
+
+
+### Activity
+
+Designing an external integration boundary.
+
+
+### AI Assistance
+
+AI was used to:
+
+- explain adapter pattern concepts;
+- assist with documentation.
+
+
+### Human Validation
+
+The team selected:
+
+```
+ILocationResolver
+```
+
+as the application abstraction.
+
+
+### Evidence
+
+```
+ADR-005-external-location-provider-boundary.md
+
+ILocationResolver
+
+ExternalLocationResolver
+```
+
+
+---
+
+# Record 007 — Debugging and Development Support
+
+
+### Activity
+
+Resolving implementation issues during development.
+
+
+### AI Assistance
+
+AI was used for:
+
+- explaining compiler errors;
+- debugging guidance;
+- suggesting possible causes of issues.
+
+
+### Human Validation
+
+Developers tested suggested solutions and only accepted changes that
+worked correctly within the CivicConnect project.
+
+
+---
+
+# 5. AI Limitations
+
+
+AI-generated suggestions were treated as recommendations and were not
+accepted automatically.
+
+The team verified:
+
+- correctness;
+- compatibility with the project architecture;
+- alignment with requirements;
+- implementation behaviour.
+
+
+AI was not used to:
+
+- make final project decisions;
+- replace engineering evaluation;
+- replace testing;
+- replace peer review.
+
+
+---
+
+# 6. Team Responsibility Statement
+
+
+The CivicConnect team remains responsible for:
+
+- all submitted code;
+- architecture decisions;
+- design decisions;
+- documentation;
+- testing evidence;
+- final milestone submission.
+
+
+AI assistance was used only to support productivity,
+understanding and documentation quality.
+
+---
+
+# 7. Milestone 2 Status
+
+AI usage has been documented for:
+
+✅ Architecture evaluation  
+✅ Technology evaluation  
+✅ Persistence design  
+✅ Design decisions  
+✅ Implementation support  
+✅ Testing support  
+✅ Documentation improvement  
+
+This register will continue to evolve in future milestones.
