@@ -2,7 +2,7 @@
 
 **Project:** CivicConnect  
 **Milestone:** Milestone 2  
-**Status:** Proposed  
+**Status:** Accepted  
 **Owner:** Member 2  
 **Decision Type:** Technology  
 **Date:** 2026-09-30  
