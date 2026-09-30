@@ -19,10 +19,13 @@ namespace WebApi.Controllers
         }
 
         [HttpPatch("{id:guid}/status")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> ChangeStatus(
-            Guid id,
-            [FromBody] ChangeServiceRequestStatusRequest request,
-            CancellationToken cancellationToken)
+    Guid id,
+    [FromBody] ChangeServiceRequestStatusRequest request,
+    CancellationToken cancellationToken)
         {
             try
             {
