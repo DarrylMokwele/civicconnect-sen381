@@ -1,142 +1,366 @@
-# CivicConnect — Project Engineering Document (PED) v2.0
+# CivicConnect --- Project Engineering Document (PED) v2.0
 
-### Milestone 2 — Architecture, Technology & Initial Design Baseline
+## Milestone 2 --- Architecture, Technology & Initial Design Baseline
 
-**Project:** CivicConnect  
-**Module:** SEN381  
-**Document Version:** 2.0  
-**Milestone:** Milestone 2  
-**Status:** Integration Baseline — Pending Final Team Approval  
-**Team:** Logic Error  
-**Updated:** 30 September 2026
+**Project:** CivicConnect\
+**Module:** SEN381\
+**Document Version:** 2.0\
+**Status:** Integration Baseline
 
----
+------------------------------------------------------------------------
 
-## Document Purpose
+# 1. Introduction
 
-This Project Engineering Document (PED) is the authoritative engineering
-baseline for CivicConnect at Milestone 2.
+## 1.1 Purpose
 
-PED v2.0 evolves the Milestone 1 Engineering Foundation and Requirements
-Baseline by incorporating the architecture baseline, Architectural
-Significant Requirements, data and persistence decisions, technology
-selection, project-specific design decisions, initial implementation,
-verification evidence, updated traceability and governance evidence.
+This Project Engineering Document (PED) represents the Milestone 2
+engineering baseline for CivicConnect.
 
-Milestone 1 requirements remain the approved requirements baseline unless
-a change is explicitly recorded through the project's controlled change
-process.
+PED v2.0 evolves the Milestone 1 requirements foundation by
+incorporating architecture decisions, data and persistence decisions,
+technology selection, design decisions, implementation evidence,
+verification evidence and governance updates.
 
----
+The document connects:
 
-## How This Document Is Organised
+-   stakeholder needs;
+-   requirements;
+-   acceptance criteria;
+-   architecture;
+-   data design;
+-   technology choices;
+-   implementation;
+-   testing;
+-   project governance.
 
-PED v2.0 consolidates and references the following engineering evidence:
+------------------------------------------------------------------------
 
-1. Problem and Business Need
-2. Stakeholder Analysis
-3. Scope Baseline
-4. Requirements and Acceptance Criteria
-5. Requirements Evolution
-6. Constraints and Architectural Significant Requirements
-7. Architecture Baseline
-8. Data Model and Persistence Strategy
-9. Technology Stack
-10. Project-Specific Design Decisions
-11. Forward Engineering and Initial Implementation
-12. Requirements Traceability
-13. Verification Evidence
-14. Risk Register
-15. Engineering Decisions and ADRs
-16. GitHub and Team Governance
-17. AI Usage Register
-18. Known Limitations and Outstanding Work
-19. Milestone 2 Baseline Sign-Off
+# 2. Project Overview
 
-## 1. Problem & Business Need
-See: `docs/requirements/problem-and-business-need.md`
+CivicConnect is a civic service-request management platform designed to
+connect citizens with municipal service departments.
 
-CivicConnect consolidates fragmented community service-request channels (email, phone, WhatsApp,
-spreadsheets, paper) into one controlled system, giving requesters visibility, staff clear ownership, and
-management reliable oversight of service delivery.
+The system enables citizens to submit service requests while allowing
+operational staff to manage, update and track requests through
+controlled lifecycle processes.
 
-## 2. Stakeholder Analysis
-See: `docs/requirements/stakeholder-analysis.md`
+Milestone 2 establishes the initial engineering baseline through:
 
-Three stakeholder groups identified — STK-001 Requesters, STK-002 Operational Staff, STK-003 Management/
-Oversight — with three documented conflicts (quick submission vs. sufficient information; visibility vs.
-access control; management information vs. staff workload), each with a stated requirement effect.
+-   modular monolith architecture;
+-   ASP.NET Core Web API;
+-   Entity Framework Core persistence;
+-   SQL Server database support;
+-   service-request lifecycle governance;
+-   notification architecture;
+-   external integration boundaries;
+-   automated verification.
 
-## 3. Scope Baseline
-See: `docs/scope_baseline.md`
+------------------------------------------------------------------------
 
-In-scope commitments, three deferred capabilities with lifecycle-gate targets, and one deliberately excluded
-capability (in-app payment/fine settlement) with a three-part engineering defence.
+# 3. Architecture Baseline
 
-## 4. Requirements & Acceptance Criteria
-See: `docs/requirements/functional-requirements.md`, `non-functional-requirements.md`, `acceptance-criteria.md`
+## 3.1 Selected Architecture
 
-16 functional requirements (FR-001–FR-016) and 6 non-functional requirements (NFR-001–NFR-006), each sourced
-to a stakeholder group, prioritised (MoSCoW), and paired with measurable, testable acceptance criteria
-(e.g. AC-001.1–AC-001.4, AC-010.1–AC-010.3). **Confirmed and owned by Member A.**
+CivicConnect uses a modular monolith architecture.
 
-## 5. Constraints
-See: `docs/constraints.md`
+The system separates responsibilities into:
 
-Five constraint categories (scope, schedule, cost/resource, quality/verification, security/regulatory) with
-a worked ripple-effect trade-off analysis connecting visibility, access control and latency.
+    Web API
+       |
+    Application
+       |
+    Domain
+       |
+    Infrastructure
 
-## 6. Initial RTM
-See: `docs/rtm.md`
+## Domain Layer
 
-Full source → requirement → acceptance-criteria table built directly from Member A's confirmed register,
-with FR-010 traced end-to-end from stakeholder need through to acceptance criteria and the forward-engineering
-item it informs.
+Responsible for:
 
-## 7. Initial Risk Register
-See: `docs/risk_register.md`
+-   entities;
+-   business rules;
+-   domain events;
+-   domain exceptions.
 
-Five risks (RSK-01 to RSK-05) with probability/impact scoring; RSK-01 (Scope Creep & Premature
-Implementation) carries the highest severity and is defended in-document.
+Examples:
 
-## 8. Forward Engineering Considerations
-See: `docs/forward_engineering.md`
+-   ServiceRequest
+-   RequestStatus
+-   StatusHistory
+-   Notification
 
-Six forward-looking concerns (FEC-01 to FEC-06) covering testability, POPIA-compliant data architecture,
-audit trail design, lifecycle state-machine design, zero-budget deployment, and asynchronous notification
-handling — each stating why it matters now, what it influences later, what's missing, and the risk of
-ignoring it.
+## Application Layer
 
-## 9. Engineering Decision Log
-See: `docs/decision-log.md`
+Responsible for:
 
-Eight entries: two firm M1 decisions (RBAC model; anonymised reporting views) and six justified deferments,
-each tied to the confirmed requirement, risk or constraint that drove it, and cross-referenced to real AC
-IDs.
+-   application workflows;
+-   abstractions;
+-   use cases.
 
-## 10. GitHub & Team Governance
-See: `CODEOWNERS`, repository Settings (branch protection), Issues/Projects board
+Examples:
 
-Protected `main`, two-reviewer approval enforced via branch protection rules, CODEOWNERS routing reviews by
-artefact area, and issue-tracked work packages for every substantive artefact change.
+-   IServiceRequestLifecycleService
+-   INotificationService
+-   ILocationResolver
 
-## 11. AI Usage Register
-See: `docs/ai-usage-register.md`
+## Infrastructure Layer
 
-Live register of AI-assisted contributions with human verification recorded against each entry, including
-the reconstruction-then-verification cycle used to resolve the requirements register gap.
+Responsible for:
 
-## 12. Baseline Sign-Off
-See: `docs/baseline-signoff.md`
+-   persistence;
+-   database access;
+-   external integrations.
 
-Team review checklist and formal gate decision — ready to be completed now that the requirements register
-gap is closed.
+Examples:
 
----
+-   CivicConnectDbContext
+-   NotificationService
+-   ExternalLocationResolver
 
-## Resolved item
+------------------------------------------------------------------------
 
-The requirements register referenced throughout Sections 4 and 6 was initially a Member C reconstruction
-pending Member A's authorship. Member A has since published and confirmed the full FR/NFR/AC set with no ID
-conflicts against Member B's downstream references. See `00-gap-flag-RESOLVED.md` for the full resolution
-record. PED v1.0 is now ready for team review and baseline sign-off.
+# 4. Data and Persistence Strategy
+
+CivicConnect uses relational persistence through:
+
+-   SQL Server;
+-   Entity Framework Core;
+-   explicit entity configurations.
+
+Main entities include:
+
+-   User
+-   Role
+-   ServiceRequest
+-   RequestStatus
+-   StatusHistory
+-   Notification
+-   Assignment
+-   Department
+
+Persistence responsibilities are isolated inside the Infrastructure
+layer.
+
+------------------------------------------------------------------------
+
+# 5. Technology Stack
+
+  Technology              Purpose
+  ----------------------- ----------------------
+  C#                      Programming language
+  .NET                    Application platform
+  ASP.NET Core Web API    REST API
+  Entity Framework Core   ORM
+  SQL Server              Database
+  xUnit                   Automated testing
+  Swagger/OpenAPI         API documentation
+  GitHub                  Source control
+
+------------------------------------------------------------------------
+
+# 6. Milestone 2 Design Decisions
+
+## 6.1 Notification Feedback Architecture
+
+### Problem
+
+Service-request lifecycle logic should not be tightly coupled to
+notification creation.
+
+### Selected Approach
+
+Event-driven notification architecture.
+
+Flow:
+
+    ServiceRequest Status Change
+            |
+            v
+    ServiceRequestStatusChangedEvent
+            |
+            v
+    ServiceRequestStatusChangedHandler
+            |
+            v
+    INotificationService
+            |
+            v
+    NotificationService
+            |
+            v
+    Notifications Table
+
+Implementation evidence:
+
+-   ServiceRequestStatusChangedEvent
+-   ServiceRequestStatusChangedHandler
+-   INotificationService
+-   NotificationService
+
+------------------------------------------------------------------------
+
+## 6.2 External Location Provider Boundary
+
+### Problem
+
+CivicConnect may require location services without depending directly on
+a specific external provider.
+
+### Selected Approach
+
+Adapter boundary using:
+
+    ILocationResolver
+
+Structure:
+
+    Application
+
+    ILocationResolver
+
+            ^
+
+    Infrastructure
+
+    ExternalLocationResolver
+
+A live third-party geocoding provider remains future work.
+
+------------------------------------------------------------------------
+
+# 7. Forward Engineering Implementation
+
+## Service Request Lifecycle Governance
+
+The lifecycle implementation prevents invalid status transitions.
+
+Flow:
+
+    PATCH /api/ServiceRequests/{id}/status
+
+            |
+
+    ServiceRequestLifecycleService
+
+            |
+
+    StatusTransitionPolicy
+
+Example:
+
+Valid:
+
+    Submitted -> Assigned
+
+Result:
+
+    204 No Content
+
+Invalid:
+
+    Assigned -> Closed
+
+Result:
+
+    400 Bad Request
+
+------------------------------------------------------------------------
+
+# 8. Verification Evidence
+
+Automated tests cover:
+
+-   lifecycle transition rules;
+-   invalid transition rejection;
+-   persistence behaviour;
+-   notification creation;
+-   location provider boundary.
+
+Projects:
+
+    CivicConnect.Domain.Tests
+
+    CivicConnect.Application.Tests
+
+    CivicConnect.Infrastructure.Tests
+
+Manual verification includes:
+
+-   Swagger API testing;
+-   database evidence;
+-   status history records;
+-   notification records.
+
+------------------------------------------------------------------------
+
+# 9. Traceability Summary
+
+Example trace:
+
+    FR-010
+     |
+    Lifecycle Governance Requirement
+     |
+    Architecture Decision
+     |
+    IStatusTransitionPolicy
+     |
+    ServiceRequestLifecycleService
+     |
+    PATCH API Endpoint
+     |
+    Automated Tests
+     |
+    Database Verification
+
+------------------------------------------------------------------------
+
+# 10. Known Limitations
+
+The following remain future work:
+
+-   authentication and authorisation;
+-   complete citizen workflow;
+-   staff assignment workflow;
+-   reporting dashboards;
+-   external notification providers;
+-   live location provider integration;
+-   production deployment.
+
+------------------------------------------------------------------------
+
+# 11. GitHub Governance
+
+Development follows:
+
+    Feature Branch
+            |
+            v
+    Pull Request
+            |
+            v
+    Review
+            |
+            v
+    Integration Branch
+            |
+            v
+    Main Branch
+
+------------------------------------------------------------------------
+
+# 12. Milestone 2 Baseline Status
+
+Completed:
+
+-   Architecture baseline
+-   Technology selection
+-   Persistence strategy
+-   Design decisions
+-   Initial implementation
+-   API endpoint
+-   Lifecycle governance
+-   Notification architecture
+-   Automated verification
+
+CivicConnect will continue evolving in later milestones.
