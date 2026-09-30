@@ -662,16 +662,16 @@ Mitigation:
 The following technology stack is proposed for the initial CivicConnect
 Milestone 2 implementation:
 
-| Area | Proposed Technology | Status |
+| Area | Technology | Status |
 |---|---|---|
-| Architecture | Modular Monolith + Clean/Hexagonal boundaries | Selected by M2 architecture work |
-| Language | C# | Proposed |
-| Backend | ASP.NET Core | Proposed |
-| API | ASP.NET Core Web API | Proposed |
-| Persistence ORM | Entity Framework Core | Proposed |
+| Architecture | Modular Monolith + Clean/Hexagonal boundaries | Selected |
+| Language | C# | Selected |
+| Backend | ASP.NET Core | Selected |
+| API | ASP.NET Core Web API | Selected |
+| Persistence ORM | Entity Framework Core | Selected |
 | Database | Microsoft SQL Server | Selected |
-| Automated Testing | xUnit | Proposed |
-| Dependency Management | NuGet | Proposed |
+| Automated Testing | xUnit | Selected |
+| Dependency Management | NuGet | Selected |
 | Source Control | Git | Existing |
 | Repository | GitHub | Existing |
 | Project Management | GitHub Projects | Existing |
