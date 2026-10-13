@@ -537,3 +537,19 @@ This RTM represents the evolved CivicConnect requirements traceability baseline 
 It connects the approved requirements baseline to the architecture, data model, technology decisions, design decisions, initial application implementation and initial verification evidence available at this milestone.
 
 The matrix will continue to evolve in subsequent milestones as additional CivicConnect requirements are implemented, tested and prepared for release.
+
+
+# M3 incremental Member 2 verification extension
+Historical M2 rows remain intact. This is an extension of the existing RTM, not a substitute matrix. Test source: `CivicConnect/tests/CivicConnect.Api.Tests/StatusApiTests.cs`. Execution evidence is pending; no requirement is marked fully verified by this handoff.
+
+| Stakeholder / requirement | AC / expected result | Implementation | Tests | Execution evidence / status | Defect / limitation |
+|---|---|---|---|---|---|
+| STK-002 / FR-010 | AC-010.2: reject forbidden changes; AC-010.3: persist valid change | PATCH controller, lifecycle service, policy | API-01/02 | Not run: SDK unavailable; CI/TRX required | AC-010.3 display is not tested; AC-010.1 remains unmet |
+| STK-002 / FR-010; NFR-002 | AC-010.1 and role access criteria: deny nonstaff/anonymous changes | No authentication/policy implemented | SEC-03 characterisation | Runtime pending; source confirms gap | M2-SEC-01/02; security acceptance NOT passed |
+| STK-001 / FR-005 | AC-005.1: clear feedback | Stored NotificationService output | API-01/02 | Pending | Stored notification only; delivery/display not proved; M2-INT-01 |
+| STK-002/003 / NFR-005 | Actor, new status and time recorded | StatusHistory persistence | API-01 | Pending | M2-SEC-02: stored actor is not authenticated attribution |
+| API contract / input risk | Missing resources 404; malformed/default body 400; no side effects | Route/model binding, validation and controller | API-03/04, SEC-01/02 | Pending | SQL Server equivalence not established |
+
+NFR-004 and NFR-006 descriptions in the historical RTM do not match `docs/requirements/acceptance-criteria.md` (usability and availability respectively). Do not claim their verification through these integration tests. Resolve M2-DOC-01 using controlled baseline reconciliation.
+
+
