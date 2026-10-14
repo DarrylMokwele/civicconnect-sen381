@@ -21,6 +21,8 @@ public sealed class ApiHost : WebApplicationFactory<global::Program>
     public Guid ActorId { get; } = Guid.NewGuid();
     public Guid SubmittedId { get; } = Guid.NewGuid();
     public Guid AssignedId { get; } = Guid.NewGuid();
+    public Guid InProgressId { get; } = Guid.NewGuid();
+    public Guid ResolvedId { get; } = Guid.NewGuid();
     public Guid ClosedId { get; } = Guid.NewGuid();
 
     protected override void ConfigureWebHost(IWebHostBuilder builder)
@@ -41,6 +43,21 @@ public sealed class ApiHost : WebApplicationFactory<global::Program>
         });
     }
 
+    public async Task SeedAuthenticationUsersAsync()
+    {
+        using var scope = Services.CreateScope();
+        var db = scope.ServiceProvider.GetRequiredService<CivicConnectDbContext>();
+        var adminRole = new Role { RoleId = DbInitializer.AdminRoleId, RoleName = "Admin" };
+        var staffRole = new Role { RoleId = DbInitializer.StaffRoleId, RoleName = "Staff" };
+        if (!await db.Roles.AnyAsync(r => r.RoleId == adminRole.RoleId)) db.Roles.Add(adminRole);
+        if (!await db.Roles.AnyAsync(r => r.RoleId == staffRole.RoleId)) db.Roles.Add(staffRole);
+        if (!await db.Users.AnyAsync(u => u.UserId == DbInitializer.AdminUserId))
+            db.Users.Add(new Domain.Entities.User { UserId = DbInitializer.AdminUserId, FirstName = "CivicConnect", LastName = "Administrator", Email = "admin@civicconnect.test", RoleId = DbInitializer.AdminRoleId, CreatedAt = DateTime.UtcNow });
+        if (!await db.Users.AnyAsync(u => u.UserId == DbInitializer.StaffUserId))
+            db.Users.Add(new Domain.Entities.User { UserId = DbInitializer.StaffUserId, FirstName = "Service", LastName = "Staff", Email = "staff@civicconnect.test", RoleId = DbInitializer.StaffRoleId, CreatedAt = DateTime.UtcNow });
+        await db.SaveChangesAsync();
+    }
+
     public async Task<HttpClient> SeedAsync()
     {
         var client = CreateClient(new WebApplicationFactoryClientOptions { BaseAddress = new Uri("https://localhost") });
@@ -52,6 +69,8 @@ public sealed class ApiHost : WebApplicationFactory<global::Program>
         var submitted = new RequestStatus { StatusId = SubmittedId, StatusName = "Submitted", IsActive = true };
         db.RequestStatuses.AddRange(submitted,
             new RequestStatus { StatusId = AssignedId, StatusName = "Assigned", IsActive = true },
+            new RequestStatus { StatusId = InProgressId, StatusName = "In Progress", IsActive = true },
+            new RequestStatus { StatusId = ResolvedId, StatusName = "Resolved", IsActive = true },
             new RequestStatus { StatusId = ClosedId, StatusName = "Closed", IsActive = true });
         db.ServiceRequests.Add(new ServiceRequest { ServiceRequestId = RequestId, Requester = user, RequesterId = ActorId,
             Status = submitted, StatusId = SubmittedId, Title = "Broken light", Description = "Controlled integration fixture",

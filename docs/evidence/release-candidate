@@ -1,0 +1,43 @@
+# CivicConnect M3 Release Candidate
+
+## Included
+
+This release candidate combines the existing Member 1 and Member 2 work with Member 3 production-readiness/operations work and the integrated frontend.
+
+### Backend
+- ASP.NET Core Web API
+- EF Core persistence
+- Service Request lifecycle
+- Status history and notifications
+- Admin/Staff authentication
+- Assignment management
+- Health checks
+- Correlation-ID observability
+
+### Frontend
+- Citizen portal with no-login request submission
+- Staff portal
+- Admin/management portal
+- Login/logout/account switching
+- Request queues
+- Request details and lifecycle actions
+- Reports/activity/notifications/team views
+
+### Testing
+- Unit/application tests
+- API integration tests using WebApplicationFactory + relational SQLite
+- Real HTTP E2E lifecycle test
+- Authentication tests
+- Negative lifecycle test
+- Black-box/state-transition coverage
+
+### Operations
+- Docker staging
+- Release validation script
+- Dependency and secret checks
+- Recovery runbook and backup drill
+- JMeter performance baseline
+
+## Evidence boundary
+
+The repository contains implementation and repeatable test/deployment procedures. Actual runtime results must be captured by the team and inserted into the PED v3.0/RTM and evidence set.

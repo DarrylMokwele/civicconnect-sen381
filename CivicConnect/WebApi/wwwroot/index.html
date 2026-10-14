@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="CivicConnect community service request platform">
+    <title>CivicConnect | Community Services</title>
+    <link rel="stylesheet" href="/css/site.css">
+</head>
+<body>
+    <div id="toastStack" class="toast-stack"></div>
+    <div id="profileMenu" class="profile-menu hidden">
+        <div class="profile-menu-head"><span id="menuAvatar" class="avatar">PC</span><div><strong id="menuName">Public Citizen</strong><small id="menuRole">No login required</small></div></div>
+        <button data-page="dashboard">Citizen portal</button>
+        <button id="staffAdminSignInBtn" data-page="login">Staff / Admin sign in</button>
+        <button id="logoutBtn" class="danger hidden">Log out</button>
+    </div>
+    <div id="assignModal" class="modal hidden"><div class="modal-backdrop" data-close-modal></div><div class="modal-card"><button class="modal-close" data-close-modal>×</button><span class="kicker">TEAM ASSIGNMENT</span><h2>Assign service request</h2><p>Choose the department and staff member responsible for the request.</p><label>Department<select id="assignDepartment"></select></label><label>Staff member<select id="assignStaff"></select></label><div class="form-actions"><button class="btn ghost" data-close-modal>Cancel</button><button class="btn primary" id="saveAssignment">Save assignment</button></div></div></div>
+    <div class="app-shell">
+        <aside class="sidebar" id="sidebar">
+            <div class="brand"><div class="brand-mark">CC</div><div><strong>CivicConnect</strong><span>Community service hub</span></div></div>
+            <div class="portal-pill"><span class="status-dot"></span><span id="portalLabel">Citizen Portal</span></div>
+            <nav id="citizenNav" class="nav-group">
+                <div class="nav-label">CITIZEN</div>
+                <button class="nav-item active" data-page="dashboard"><span>⌂</span> Overview</button>
+                <button class="nav-item" data-page="new"><span>＋</span> Submit request</button>
+                <button class="nav-item" data-page="requests"><span>▤</span> My requests</button>
+                <button class="nav-item" data-page="notifications"><span>◔</span> Notifications <b id="citizenCount" class="count">0</b></button>
+            </nav>
+            <nav id="staffNav" class="nav-group hidden">
+                <div class="nav-label">STAFF</div>
+                <button class="nav-item" data-page="staffDashboard"><span>◈</span> Work overview</button>
+                <button class="nav-item" data-page="staffRequests"><span>▣</span> Request queue</button>
+                <button class="nav-item" data-page="myAssignments"><span>✓</span> My assigned requests</button>
+                <button class="nav-item" data-page="staffNotifications"><span>●</span> Notifications <b id="staffCount" class="count">0</b></button>
+            </nav>
+            <nav id="adminNav" class="nav-group hidden">
+                <div class="nav-label">ADMINISTRATION</div>
+                <button class="nav-item" data-page="adminDashboard"><span>◈</span> Management overview</button>
+                <button class="nav-item" data-page="adminRequests"><span>▣</span> Request queue</button>
+                <button class="nav-item" data-page="adminReports"><span>◫</span> Reports</button>
+                <button class="nav-item" data-page="adminActivity"><span>◷</span> Activity history</button>
+                <button class="nav-item" data-page="adminNotifications"><span>●</span> Notifications <b id="adminCount" class="count">0</b></button>
+                <button class="nav-item" data-page="adminTeam"><span>♙</span> Team & assignments</button>
+            </nav>
+            <div class="sidebar-bottom"><div><span class="status-dot"></span> API connected</div><small>M3 release candidate</small></div>
+        </aside>
+        <main class="main">
+            <header class="topbar"><button class="mobile-menu" id="mobileMenu">☰</button><div class="crumb"><span id="crumbSection">Citizen</span><strong id="crumbPage">Overview</strong></div><div class="top-right"><button class="icon-btn" data-page="notifications">◔<i id="topDot" class="dot hidden"></i></button><button id="profileButton" class="user-chip"><span id="avatar" class="avatar">PC</span><span class="user-copy"><strong id="userName">Public Citizen</strong><small id="userRole">No login required</small></span><span>⌄</span></button></div></header>
+            <div class="content">
+                <section id="dashboard" class="page active">
+                    <div class="page-head"><div><span class="kicker">CITIZEN OVERVIEW</span><h1>How can we help?</h1><p>Report an issue, follow its progress and get notified when things change.</p></div><button class="btn primary" data-page="new">＋ Submit a request</button></div>
+                    <div id="citizenStats" class="stat-grid"></div>
+                    <div class="grid-2">
+                        <div class="panel"><div class="panel-head"><div><h2>Recent requests</h2><p>Your latest service activity</p></div><button class="link-btn" data-page="requests">View all →</button></div><div id="recentRequests"></div></div>
+                        <div class="panel accent-panel"><div class="panel-head"><div><h2>How CivicConnect works</h2><p>From report to resolution</p></div></div><div class="steps"><div><b>01</b><span><strong>Submit</strong><small>Tell the service team what needs attention.</small></span></div><div><b>02</b><span><strong>Track</strong><small>See progress and service updates.</small></span></div><div><b>03</b><span><strong>Resolve</strong><small>Receive a notification when complete.</small></span></div></div></div>
+                    </div>
+                </section>
+                <section id="new" class="page"><div class="page-head"><div><span class="kicker">NEW REQUEST</span><h1>Submit a service request</h1><p>No citizen account is required. Your request is recorded in CivicConnect.</p></div></div><div class="form-layout"><div class="panel form-panel"><form id="requestForm"><label>Request title<input id="title" maxlength="200" required placeholder="e.g. Broken classroom light"></label><label>Department / category<select id="department"></select></label><label>Description<textarea id="description" maxlength="2000" required placeholder="Describe the issue, location and any useful context..."></textarea><small class="counter"><span id="descCount">0</span>/2000</small></label><div class="form-actions"><button type="button" class="btn ghost" data-page="dashboard">Cancel</button><button class="btn primary" type="submit">Submit request →</button></div></form></div><div class="side-note"><div class="note-icon">✓</div><h3>No login required</h3><p>Citizens can report a service issue without creating an account. Staff and administrators use secure sign-in for operational actions.</p><div class="mini-flow"><span>Submitted</span><i>→</i><span>Assigned</span><i>→</i><span>In progress</span><i>→</i><span>Resolved</span></div></div></div></section>
+                <section id="requests" class="page"><div class="page-head"><div><span class="kicker">REQUESTS</span><h1>My requests</h1><p>Review the requests submitted through this citizen portal.</p></div><button class="btn primary" data-page="new">＋ New request</button></div><div class="toolbar"><div class="search"><span>⌕</span><input id="search" placeholder="Search requests..."></div><select id="statusFilter"></select></div><div class="panel table-panel"><div id="requestTable"></div></div></section>
+                <section id="detail" class="page"><button class="back" data-page="requests">← Back to requests</button><div id="detailContent"></div></section>
+                <section id="notifications" class="page"><div class="page-head"><div><span class="kicker">UPDATES</span><h1>Notifications</h1><p>Updates generated by the service request lifecycle.</p></div></div><div class="panel"><div id="citizenNotifications"></div></div></section>
+                <section id="login" class="page"><div class="login-layout"><div class="login-intro"><span class="kicker">SECURE STAFF ACCESS</span><h1>Run the service operation from one place.</h1><p>Citizens can submit requests without signing in. Staff and administrators sign in here to manage the queue, assignments, statuses and operational information.</p><div class="login-points"><span>✓ Role-based access</span><span>✓ Status lifecycle controls</span><span>✓ Live operational queue</span></div></div><div class="login-card"><div class="admin-logo">CC</div><span class="kicker">STAFF / ADMIN</span><h2 id="loginTitle">Sign in to CivicConnect</h2><p id="loginHelp">Use your service account credentials.</p><form id="loginForm"><label>Username<input id="loginUsername" autocomplete="username" required></label><label>Password<div class="password-wrap"><input id="loginPassword" type="password" autocomplete="current-password" required><button type="button" id="togglePassword" class="password-toggle" aria-label="Show password" title="Show password">Show</button></div></label><button class="btn primary full" type="submit">Sign in →</button></form><button class="text-btn" data-page="dashboard">← Continue as citizen</button><small class="demo-note">Use your staff or administrator account. You can show or hide the password while typing.</small></div></div></section>
+                <section id="staffDashboard" class="page"><div class="page-head"><div><span class="kicker">STAFF WORK OVERVIEW</span><h1>Your service desk</h1><p>Monitor the queue and work on requests assigned to you.</p></div><div class="live"><i></i> Live queue</div></div><div id="staffStats" class="stat-grid"></div><div class="grid-2"><div class="panel"><div class="panel-head"><div><h2>My assigned work</h2><p>Requests currently assigned to you</p></div><button class="link-btn" data-page="myAssignments">View all →</button></div><div id="staffRecent"></div></div><div class="panel"><div class="panel-head"><div><h2>Queue snapshot</h2><p>All service requests</p></div></div><div id="staffQueueSnapshot" class="chart-list"></div></div></div></section>
+                <section id="staffRequests" class="page"><div class="page-head"><div><span class="kicker">REQUEST QUEUE</span><h1>Service request queue</h1><p>Review requests and update status according to the approved lifecycle.</p></div><button class="btn ghost" id="refreshStaff">↻ Refresh</button></div><div class="toolbar"><div class="search"><span>⌕</span><input id="staffSearch" placeholder="Search title or description..."></div><select id="staffStatusFilter"></select></div><div class="panel table-panel"><div id="staffRequestTable"></div></div></section>
+                <section id="myAssignments" class="page"><div class="page-head"><div><span class="kicker">MY WORK</span><h1>My assigned requests</h1><p>Requests currently assigned to your staff account.</p></div></div><div class="panel table-panel"><div id="myAssignmentTable"></div></div></section>
+                <section id="staffNotifications" class="page"><div class="page-head"><div><span class="kicker">STAFF UPDATES</span><h1>Notifications</h1><p>Recent lifecycle notifications.</p></div></div><div class="panel"><div id="staffNotificationList"></div></div></section>
+                <section id="adminDashboard" class="page"><div class="page-head"><div><span class="kicker">MANAGEMENT OVERVIEW</span><h1>Operations at a glance</h1><p>Monitor demand, workload and the service queue.</p></div><div class="live"><i></i> Auto-refreshing</div></div><div id="adminStats" class="stat-grid"></div><div class="grid-2"><div class="panel"><div class="panel-head"><div><h2>Requests by status</h2><p>Current workload</p></div></div><div id="statusChart" class="chart-list"></div></div><div class="panel"><div class="panel-head"><div><h2>Requests by department</h2><p>Where demand is coming from</p></div></div><div id="departmentChart" class="chart-list"></div></div></div><div class="panel"><div class="panel-head"><div><h2>Live activity</h2><p>Most recently updated requests</p></div><button class="link-btn" data-page="adminActivity">View activity →</button></div><div id="adminRecent"></div></div></section>
+                <section id="adminRequests" class="page"><div class="page-head"><div><span class="kicker">REQUEST QUEUE</span><h1>Manage service requests</h1><p>Review, assign and move requests through the approved lifecycle.</p></div></div><div class="toolbar"><div class="search"><span>⌕</span><input id="adminSearch" placeholder="Search title or description..."></div><select id="adminStatusFilter"></select><button class="btn ghost" id="refreshAdmin">↻ Refresh</button></div><div class="panel table-panel"><div id="adminRequestTable"></div></div></section>
+                <section id="adminReports" class="page"><div class="page-head"><div><span class="kicker">REPORTING</span><h1>Service reports</h1><p>Operational breakdown generated from live request data.</p></div><button class="btn ghost" id="exportReport">↓ Export CSV</button></div><div id="reportCards" class="report-grid"></div><div class="grid-2"><div class="panel"><div class="panel-head"><div><h2>Status distribution</h2></div></div><div id="reportStatus" class="donut-wrap"></div></div><div class="panel"><div class="panel-head"><div><h2>Department workload</h2></div></div><div id="reportDepartments" class="bars"></div></div></div></section>
+                <section id="adminActivity" class="page"><div class="page-head"><div><span class="kicker">ACTIVITY HISTORY</span><h1>Recent service activity</h1><p>A live operational view of request updates.</p></div></div><div class="panel"><div id="activityList"></div></div></section>
+                <section id="adminNotifications" class="page"><div class="page-head"><div><span class="kicker">SYSTEM UPDATES</span><h1>Notifications</h1><p>Lifecycle notifications generated by CivicConnect.</p></div></div><div class="panel"><div id="adminNotificationList"></div></div></section>
+                <section id="adminTeam" class="page"><div class="page-head"><div><span class="kicker">TEAM & ASSIGNMENTS</span><h1>Service team</h1><p>Assign requests to departments and staff members.</p></div></div><div class="panel"><div id="teamList"></div></div></section>
+            </div>
+        </main>
+    </div>
+    <script src="/js/app.js"></script>
+</body>
+</html>

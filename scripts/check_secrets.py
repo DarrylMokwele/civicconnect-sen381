@@ -10,7 +10,21 @@ rules = {
 def check(name, content):
     # The scanner's own pattern definitions are not credentials.
     if name == "scripts/check_secrets.py": return []
-    issues = [name + ": " + key for key, rule in rules.items() if rule.search(content)]
+    # Templates and parameterised deployment configuration intentionally contain
+    # placeholders, not secret values. Real .env files remain blocked by the
+    # sensitive-file rule below and are ignored by Git.
+    if name in (".env.example",) or name.endswith(".env.example"):
+        return []
+    issues = []
+    for key, rule in rules.items():
+        match = rule.search(content)
+        if not match:
+            continue
+        # A deployment placeholder such as Password=${SA_PASSWORD} is safe:
+        # the secret must be injected by the environment at runtime.
+        if key == "assigned-password" and "${" in match.group(0):
+            continue
+        issues.append(name + ": " + key)
     if pathlib.PurePosixPath(name).name in (".env", "appsettings.Production.json"):
         issues.append(name + ": sensitive configuration file requires removal/review")
     return issues
