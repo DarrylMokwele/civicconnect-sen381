@@ -410,3 +410,12 @@ AI usage has been documented for:
 ✅ Documentation improvement  
 
 This register will continue to evolve in future milestones.
+
+
+
+# M3 AI record - 13 October 2026
+Tool: ChatGPT/Codex. Request: read all provided milestone briefs and GitHub ZIP; complete Member 2 API, security, CI and governance contribution. Output: real HTTP/SQLite test fixture/cases, non-empty GUID validation, CI workflow, security scripts, PR template and incremental PED/RTM/register additions.
+
+Affected artefacts: see CHANGES.json. AI corrected the approach to distinguish an anonymous-access characterisation from a security acceptance pass; did not invent GitHub approvals, run results or Maqoba-authored commits. Verification performed: source/configuration review, XML/solution structure checks, local heuristic scan and controlled Python gate fixtures. .NET compile/test, NuGet audit, live workflow and human team review remain pending.
+
+Human accountability: Maqoba must explain/validate the contribution; two independent teammates review before acceptance. Acceptance status: AI-assisted draft implementation prepared for review, not human-approved. Significant limitations: missing SDK, authentication and GitHub evidence; SQLite is not SQL Server. Team must record actual review changes, accepted/rejected output and execution links before submission.

@@ -349,3 +349,16 @@ CivicConnect Milestone 2 integration branch.
 
 Risks will continue to be reviewed during future milestones as new
 features and integrations are introduced.
+
+
+# M3 Member 2 risk review - 13 October 2026
+This supersedes R-008's M2 accepted-future-risk classification for the M3 review; historical entries remain above.
+
+| ID | Probability / impact | Current decision | Owner / action | Evidence |
+|---|---|---|---|---|
+| R-008 | High / High | Open release blocker: no access control | Maqoba/team implement and verify auth/RBAC | M2-SEC-01/02; testing/member2-api-security.md |
+| R-M2-11 | Medium / High | Unexecuted tests/CI/dependency audit | Maqoba execute in .NET/GitHub; retain results | CI and test evidence pending |
+| R-M2-12 | Medium / High | SQL Server behaviour not represented by SQLite suite | Team validate migration/production-provider behaviour in staging | TD-M2-01 |
+| R-M2-13 | Medium / High | Notification partial commit | Team evaluate controlled fix | M2-INT-01 |
+| R-M2-14 | Medium / High | Governance claims unavailable from ZIP | Team configure/verify protected-main and two reviews | member2-github-evidence.md |
+| R-M2-15 | Medium / Medium | Conflicting NFR descriptions | Team reconcile using approved M1 baseline/change record | M2-DOC-01 |

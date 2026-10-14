@@ -1,4 +1,4 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.14.36603.0
@@ -17,12 +17,18 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CivicConnect.Application.Te
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CivicConnect.Infrastructure.Tests", "tests\CivicConnect.Infrastructure.Tests\CivicConnect.Infrastructure.Tests.csproj", "{D956EC0D-37B2-4444-8833-73F8710EF65B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CivicConnect.Api.Tests", "tests\CivicConnect.Api.Tests\CivicConnect.Api.Tests.csproj", "{6C722D00-9D62-4F12-B433-E304390A1737}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6C722D00-9D62-4F12-B433-E304390A1737}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C722D00-9D62-4F12-B433-E304390A1737}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C722D00-9D62-4F12-B433-E304390A1737}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C722D00-9D62-4F12-B433-E304390A1737}.Release|Any CPU.Build.0 = Release|Any CPU
 		{76CCAC9A-5481-4803-A478-440B9095F85F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{76CCAC9A-5481-4803-A478-440B9095F85F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{76CCAC9A-5481-4803-A478-440B9095F85F}.Release|Any CPU.ActiveCfg = Release|Any CPU

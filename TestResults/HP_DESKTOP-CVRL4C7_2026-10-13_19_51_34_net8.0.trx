@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestRun id="02cec99e-026b-4c82-b95b-1e72f9b89354" name="HP@DESKTOP-CVRL4C7 2026-10-13 19:51:34" runUser="DESKTOP-CVRL4C7\HP" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Times creation="2026-10-13T19:51:34.5564324+02:00" queuing="2026-10-13T19:51:34.5564332+02:00" start="2026-10-13T19:51:31.6196067+02:00" finish="2026-10-13T19:51:35.4797964+02:00" />
+  <TestSettings name="default" id="0f45cd2b-94e9-463c-9ecd-c32ffc79e24d">
+    <Deployment runDeploymentRoot="HP_DESKTOP-CVRL4C7_2026-10-13_19_51_34" />
+  </TestSettings>
+  <Results>
+    <UnitTestResult executionId="66e3b225-aecc-47cf-a50d-1d88eefe2069" testId="7bf8a29d-451b-b579-2fa5-7a43621d72a6" testName="CivicConnect.Infrastructure.Tests.ExternalLocationResolverTests.ResolveAsync_ValidAddress_WithoutConfiguredProvider_ReturnsNull" computerName="DESKTOP-CVRL4C7" duration="00:00:00.0008357" startTime="2026-10-13T19:51:33.7722461+02:00" endTime="2026-10-13T19:51:33.7722465+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="66e3b225-aecc-47cf-a50d-1d88eefe2069" />
+    <UnitTestResult executionId="de179a5d-6180-4ad5-979a-ec7393d2861c" testId="fde6ff31-de56-054b-27c1-a3d3d8164cac" testName="CivicConnect.Infrastructure.Tests.ServiceRequestLifecycleServiceTests.ChangeStatusAsync_SubmittedToClosed_ThrowsException" computerName="DESKTOP-CVRL4C7" duration="00:00:00.0445646" startTime="2026-10-13T19:51:35.3920109+02:00" endTime="2026-10-13T19:51:35.3920113+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="de179a5d-6180-4ad5-979a-ec7393d2861c" />
+    <UnitTestResult executionId="bb80ac73-9bc4-4a2b-9331-06da06dad91e" testId="a3292f9d-e1e2-0b59-ff73-948c6740dcec" testName="CivicConnect.Infrastructure.Tests.ServiceRequestLifecycleServiceTests.ChangeStatusAsync_SubmittedToAssigned_UpdatesRequest" computerName="DESKTOP-CVRL4C7" duration="00:00:01.6043958" startTime="2026-10-13T19:51:35.3472278+02:00" endTime="2026-10-13T19:51:35.3472282+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="bb80ac73-9bc4-4a2b-9331-06da06dad91e" />
+    <UnitTestResult executionId="f639fd5e-6074-4d27-87e0-6f757fe899fd" testId="3625849c-a365-0f82-8f25-89757e93cc24" testName="CivicConnect.Infrastructure.Tests.ExternalLocationResolverTests.ResolveAsync_WhitespaceAddress_ReturnsNull" computerName="DESKTOP-CVRL4C7" duration="00:00:00.0110581" startTime="2026-10-13T19:51:33.7626528+02:00" endTime="2026-10-13T19:51:33.7627215+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="f639fd5e-6074-4d27-87e0-6f757fe899fd" />
+    <UnitTestResult executionId="1885fe56-81c0-42ee-bee9-b052c653afc9" testId="920625aa-a91c-3c87-2630-f400a4b6f6e3" testName="CivicConnect.Infrastructure.Tests.ExternalLocationResolverTests.ResolveAsync_EmptyAddress_ReturnsNull" computerName="DESKTOP-CVRL4C7" duration="00:00:00.0013530" startTime="2026-10-13T19:51:33.7728819+02:00" endTime="2026-10-13T19:51:33.7728822+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="1885fe56-81c0-42ee-bee9-b052c653afc9" />
+    <UnitTestResult executionId="122a8538-7a59-4e99-9e3d-73e31918b84e" testId="66284ae2-52f5-cba0-2ba3-8a1694f08b3f" testName="CivicConnect.Infrastructure.Tests.CivicConnectDbContextTests.CanSaveAndRetrieveServiceRequest" computerName="DESKTOP-CVRL4C7" duration="00:00:01.5640371" startTime="2026-10-13T19:51:35.3068619+02:00" endTime="2026-10-13T19:51:35.3068622+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="122a8538-7a59-4e99-9e3d-73e31918b84e" />
+    <UnitTestResult executionId="015f39fb-a074-419f-9760-5b1f11465795" testId="8dd5d999-4e66-7d56-eed6-97dc5387aa80" testName="CivicConnect.Infrastructure.Tests.NotificationServiceTests.CreateNotificationAsync_SavesNotification" computerName="DESKTOP-CVRL4C7" duration="00:00:01.5612788" startTime="2026-10-13T19:51:35.3042492+02:00" endTime="2026-10-13T19:51:35.3042497+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="015f39fb-a074-419f-9760-5b1f11465795" />
+  </Results>
+  <TestDefinitions>
+    <UnitTest name="CivicConnect.Infrastructure.Tests.ExternalLocationResolverTests.ResolveAsync_EmptyAddress_ReturnsNull" storage="c:\users\hp\source\repos\civicconnect-sen381\civicconnect\tests\civicconnect.infrastructure.tests\bin\debug\net8.0\civicconnect.infrastructure.tests.dll" id="920625aa-a91c-3c87-2630-f400a4b6f6e3">
+      <Execution id="1885fe56-81c0-42ee-bee9-b052c653afc9" />
+      <TestMethod codeBase="C:\Users\HP\source\repos\civicconnect-sen381\CivicConnect\tests\CivicConnect.Infrastructure.Tests\bin\Debug\net8.0\CivicConnect.Infrastructure.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="CivicConnect.Infrastructure.Tests.ExternalLocationResolverTests" name="ResolveAsync_EmptyAddress_ReturnsNull" />
+    </UnitTest>
+    <UnitTest name="CivicConnect.Infrastructure.Tests.ServiceRequestLifecycleServiceTests.ChangeStatusAsync_SubmittedToAssigned_UpdatesRequest" storage="c:\users\hp\source\repos\civicconnect-sen381\civicconnect\tests\civicconnect.infrastructure.tests\bin\debug\net8.0\civicconnect.infrastructure.tests.dll" id="a3292f9d-e1e2-0b59-ff73-948c6740dcec">
+      <Execution id="bb80ac73-9bc4-4a2b-9331-06da06dad91e" />
+      <TestMethod codeBase="C:\Users\HP\source\repos\civicconnect-sen381\CivicConnect\tests\CivicConnect.Infrastructure.Tests\bin\Debug\net8.0\CivicConnect.Infrastructure.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="CivicConnect.Infrastructure.Tests.ServiceRequestLifecycleServiceTests" name="ChangeStatusAsync_SubmittedToAssigned_UpdatesRequest" />
+    </UnitTest>
+    <UnitTest name="CivicConnect.Infrastructure.Tests.NotificationServiceTests.CreateNotificationAsync_SavesNotification" storage="c:\users\hp\source\repos\civicconnect-sen381\civicconnect\tests\civicconnect.infrastructure.tests\bin\debug\net8.0\civicconnect.infrastructure.tests.dll" id="8dd5d999-4e66-7d56-eed6-97dc5387aa80">
+      <Execution id="015f39fb-a074-419f-9760-5b1f11465795" />
+      <TestMethod codeBase="C:\Users\HP\source\repos\civicconnect-sen381\CivicConnect\tests\CivicConnect.Infrastructure.Tests\bin\Debug\net8.0\CivicConnect.Infrastructure.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="CivicConnect.Infrastructure.Tests.NotificationServiceTests" name="CreateNotificationAsync_SavesNotification" />
+    </UnitTest>
+    <UnitTest name="CivicConnect.Infrastructure.Tests.CivicConnectDbContextTests.CanSaveAndRetrieveServiceRequest" storage="c:\users\hp\source\repos\civicconnect-sen381\civicconnect\tests\civicconnect.infrastructure.tests\bin\debug\net8.0\civicconnect.infrastructure.tests.dll" id="66284ae2-52f5-cba0-2ba3-8a1694f08b3f">
+      <Execution id="122a8538-7a59-4e99-9e3d-73e31918b84e" />
+      <TestMethod codeBase="C:\Users\HP\source\repos\civicconnect-sen381\CivicConnect\tests\CivicConnect.Infrastructure.Tests\bin\Debug\net8.0\CivicConnect.Infrastructure.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="CivicConnect.Infrastructure.Tests.CivicConnectDbContextTests" name="CanSaveAndRetrieveServiceRequest" />
+    </UnitTest>
+    <UnitTest name="CivicConnect.Infrastructure.Tests.ExternalLocationResolverTests.ResolveAsync_WhitespaceAddress_ReturnsNull" storage="c:\users\hp\source\repos\civicconnect-sen381\civicconnect\tests\civicconnect.infrastructure.tests\bin\debug\net8.0\civicconnect.infrastructure.tests.dll" id="3625849c-a365-0f82-8f25-89757e93cc24">
+      <Execution id="f639fd5e-6074-4d27-87e0-6f757fe899fd" />
+      <TestMethod codeBase="C:\Users\HP\source\repos\civicconnect-sen381\CivicConnect\tests\CivicConnect.Infrastructure.Tests\bin\Debug\net8.0\CivicConnect.Infrastructure.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="CivicConnect.Infrastructure.Tests.ExternalLocationResolverTests" name="ResolveAsync_WhitespaceAddress_ReturnsNull" />
+    </UnitTest>
+    <UnitTest name="CivicConnect.Infrastructure.Tests.ServiceRequestLifecycleServiceTests.ChangeStatusAsync_SubmittedToClosed_ThrowsException" storage="c:\users\hp\source\repos\civicconnect-sen381\civicconnect\tests\civicconnect.infrastructure.tests\bin\debug\net8.0\civicconnect.infrastructure.tests.dll" id="fde6ff31-de56-054b-27c1-a3d3d8164cac">
+      <Execution id="de179a5d-6180-4ad5-979a-ec7393d2861c" />
+      <TestMethod codeBase="C:\Users\HP\source\repos\civicconnect-sen381\CivicConnect\tests\CivicConnect.Infrastructure.Tests\bin\Debug\net8.0\CivicConnect.Infrastructure.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="CivicConnect.Infrastructure.Tests.ServiceRequestLifecycleServiceTests" name="ChangeStatusAsync_SubmittedToClosed_ThrowsException" />
+    </UnitTest>
+    <UnitTest name="CivicConnect.Infrastructure.Tests.ExternalLocationResolverTests.ResolveAsync_ValidAddress_WithoutConfiguredProvider_ReturnsNull" storage="c:\users\hp\source\repos\civicconnect-sen381\civicconnect\tests\civicconnect.infrastructure.tests\bin\debug\net8.0\civicconnect.infrastructure.tests.dll" id="7bf8a29d-451b-b579-2fa5-7a43621d72a6">
+      <Execution id="66e3b225-aecc-47cf-a50d-1d88eefe2069" />
+      <TestMethod codeBase="C:\Users\HP\source\repos\civicconnect-sen381\CivicConnect\tests\CivicConnect.Infrastructure.Tests\bin\Debug\net8.0\CivicConnect.Infrastructure.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="CivicConnect.Infrastructure.Tests.ExternalLocationResolverTests" name="ResolveAsync_ValidAddress_WithoutConfiguredProvider_ReturnsNull" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestEntries>
+    <TestEntry testId="7bf8a29d-451b-b579-2fa5-7a43621d72a6" executionId="66e3b225-aecc-47cf-a50d-1d88eefe2069" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="fde6ff31-de56-054b-27c1-a3d3d8164cac" executionId="de179a5d-6180-4ad5-979a-ec7393d2861c" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="a3292f9d-e1e2-0b59-ff73-948c6740dcec" executionId="bb80ac73-9bc4-4a2b-9331-06da06dad91e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="3625849c-a365-0f82-8f25-89757e93cc24" executionId="f639fd5e-6074-4d27-87e0-6f757fe899fd" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="920625aa-a91c-3c87-2630-f400a4b6f6e3" executionId="1885fe56-81c0-42ee-bee9-b052c653afc9" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="66284ae2-52f5-cba0-2ba3-8a1694f08b3f" executionId="122a8538-7a59-4e99-9e3d-73e31918b84e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="8dd5d999-4e66-7d56-eed6-97dc5387aa80" executionId="015f39fb-a074-419f-9760-5b1f11465795" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <ResultSummary outcome="Completed">
+    <Counters total="7" executed="7" passed="7" failed="0" error="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+    <Output>
+      <StdOut>[xUnit.net 00:00:00.01] xUnit.net VSTest Adapter v2.5.3.1+6b60a9e56a (64-bit .NET 8.0.31)&#xD;
+[xUnit.net 00:00:00.36]   Discovering: CivicConnect.Infrastructure.Tests&#xD;
+[xUnit.net 00:00:00.46]   Discovered:  CivicConnect.Infrastructure.Tests&#xD;
+[xUnit.net 00:00:00.47]   Starting:    CivicConnect.Infrastructure.Tests&#xD;
+[xUnit.net 00:00:02.25]   Finished:    CivicConnect.Infrastructure.Tests&#xD;
+</StdOut>
+    </Output>
+  </ResultSummary>
+</TestRun>

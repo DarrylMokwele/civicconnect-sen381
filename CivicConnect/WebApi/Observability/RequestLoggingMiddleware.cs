@@ -40,8 +40,8 @@ public sealed class RequestLoggingMiddleware
 
             _logger.LogInformation(
                 "HTTP {Method} {Path} returned {StatusCode} in {ElapsedMs} ms. CorrelationId={CorrelationId}",
-                context.Request.Method,
-                context.Request.Path,
+                SanitizeForLog(context.Request.Method),
+                SanitizeForLog(context.Request.Path.ToString()),
                 context.Response.StatusCode,
                 stopwatch.ElapsedMilliseconds,
                 correlationId);
@@ -58,4 +58,7 @@ public sealed class RequestLoggingMiddleware
 
         return Guid.NewGuid().ToString();
     }
+
+    private static string SanitizeForLog(string value) =>
+        value.Replace("\r", string.Empty).Replace("\n", string.Empty);
 }

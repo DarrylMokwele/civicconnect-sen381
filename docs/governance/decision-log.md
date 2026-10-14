@@ -500,3 +500,7 @@ This decision log represents the accepted engineering decisions for the
 Milestone 2 integration baseline.
 
 Further decisions must be recorded using the same controlled process.
+
+
+# M3 Member 2 proposed decisions - team review pending
+13 October 2026: use WebApplicationFactory with isolated relational SQLite for fast repeatable API integration. Production stays SQL Server; drawback is provider-specific behaviour remains unverified. Use compiler/analyzer warnings, automated test failures, dependency findings and secrets findings as CI failure gates. GitHub rules must require successful CI and two independent approvals. These are proposed verification/control choices, not evidence of team approval. Significant authentication or persistence changes require a reviewed ADR/change impact assessment before acceptance.
