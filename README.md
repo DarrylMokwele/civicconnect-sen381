@@ -1,471 +1,469 @@
 # CivicConnect
 
-## SEN381 — Milestone 2
+## SEN381 — Milestone 3 Release Candidate
 
-### Architecture, Technology & Initial Design Baseline
+CivicConnect is a civic service-request management platform that connects citizens with service departments and operational staff. Citizens can submit and track service requests, while authorised staff and administrators can manage request lifecycles, assignments, notifications and operational activity.
+
+This repository contains the integrated Milestone 3 release candidate, including the backend API, SQL Server persistence, lifecycle governance, automated testing, frontend, staff/admin authentication, operational readiness tooling and supporting governance/evidence documents.
 
 ---
 
-# 1. Project Overview
+# 1. System Overview
 
-CivicConnect is a civic service-request management platform designed to
-connect citizens with municipal service departments.
+CivicConnect is implemented as a modular monolith:
 
-The system allows citizens to submit service requests while enabling
-operational staff to manage, update and track request progress through
-controlled lifecycle processes.
+```text
+CivicConnect
+│
+├── Domain
+├── Application
+├── Infrastructure
+└── WebApi
+```
 
-The Milestone 2 implementation establishes the initial engineering
-baseline by introducing:
+The application provides three user experiences:
 
-- modular monolith architecture;
-- ASP.NET Core Web API;
-- Entity Framework Core persistence;
-- SQL Server database support;
-- service-request lifecycle governance;
-- notification architecture;
-- external integration boundaries;
-- automated verification.
+### Citizen
+
+Citizens do **not** need to log in.
+
+They can:
+
+- View the citizen portal.
+- View request information available through the portal.
+- Submit service requests.
+- Track request status.
+- View notifications.
+
+### Staff
+
+Staff members must authenticate.
+
+They can:
+
+- View the staff work overview.
+- View the request queue.
+- View assigned requests.
+- Update permitted request statuses.
+- View notifications.
+- Log out and sign in again.
+
+### Administrator
+
+Administrators must authenticate.
+
+They can:
+
+- View the management dashboard.
+- Manage service requests.
+- Change request status through the lifecycle service.
+- Assign/reassign staff and departments where supported.
+- View reports and operational activity.
+- View notifications.
+- Manage staff assignments.
+- Log out and sign in again.
 
 ---
 
 # 2. Technology Stack
 
-## Backend
-
 | Technology | Purpose |
 |---|---|
 | C# | Programming language |
-| .NET | Application platform |
+| .NET 8 | Application platform |
 | ASP.NET Core Web API | REST API |
-| Entity Framework Core | Object relational mapping |
-| SQL Server | Relational persistence |
-| Swagger/OpenAPI | API documentation |
-
----
-
-## Testing
-
-| Technology | Purpose |
-|---|---|
+| Entity Framework Core 8 | ORM / data access |
+| SQL Server | Relational database |
+| Swagger / OpenAPI | API documentation |
+| HTML / CSS / JavaScript | Frontend |
 | xUnit | Automated testing |
-| EF Core InMemory Database | Persistence testing |
+| Docker / Docker Compose | Local staging environment |
+| PowerShell | Release/staging scripts |
+| GitHub Actions | CI automation |
 
 ---
 
-## Development Tools
+# 3. Solution Structure
 
-| Tool | Purpose |
-|---|---|
-| Visual Studio | Application development |
-| GitHub | Source control and project management |
-| GitHub Projects | Task tracking |
-| GitHub Pull Requests | Code review |
-
----
-
-# 3. Solution Architecture
-
-CivicConnect follows a modular monolith architecture.
-
-The solution separates responsibilities into four main layers:
-
+```text
+CivicConnect/
+│
+├── Application/
+│   ├── Abstractions/
+│   ├── Notifications/
+│   ├── ServiceRequests/
+│   └── Locations/
+│
+├── Domain/
+│
+├── Infrastructure/
+│   ├── Persistence/
+│   ├── Notifications/
+│   ├── ServiceRequests/
+│   └── Location/
+│
+├── WebApi/
+│   ├── Controllers/
+│   ├── Contracts/
+│   ├── Health/
+│   ├── Observability/
+│   └── wwwroot/
+│       ├── index.html
+│       ├── css/site.css
+│       └── js/app.js
+│
+├── tests/
+│   ├── CivicConnect.Api.Tests/
+│   ├── CivicConnect.Application.Tests/
+│   ├── CivicConnect.Domain.Tests/
+│   └── CivicConnect.Infrastructure.Tests/
+│
+├── docs/
+├── performance/
+├── scripts/
+├── docker-compose.staging.yml
+├── .env.example
+└── CivicConnect.sln
 ```
-CivicConnect
-
-│
-├── Domain
-│
-├── Application
-│
-├── Infrastructure
-│
-└── WebApi
-```
 
 ---
 
-# 4. Project Structure
+# 4. Architecture
+
+CivicConnect uses a modular monolith with separation of concerns.
 
 ## Domain
 
-Responsible for:
-
-- business entities;
-- domain events;
-- domain exceptions;
-- core business rules.
-
-Examples:
-
-```
-ServiceRequest
-RequestStatus
-StatusHistory
-Notification
-InvalidStatusTransitionException
-```
-
----
+Contains core business concepts and rules, including service-request lifecycle concepts and domain exceptions.
 
 ## Application
 
-Responsible for:
+Contains application workflows and abstractions such as:
 
-- application workflows;
-- abstractions;
-- business use cases.
-
-Examples:
-
-```
+```text
 IServiceRequestLifecycleService
-
 IStatusTransitionPolicy
-
 INotificationService
-
 ILocationResolver
 ```
 
----
-
 ## Infrastructure
 
-Responsible for:
+Contains persistence and infrastructure implementations, including:
 
-- database access;
-- EF Core configurations;
-- external integrations.
-
-Examples:
-
-```
+```text
 CivicConnectDbContext
-
 NotificationService
-
+ServiceRequestLifecycleService
 ExternalLocationResolver
 ```
 
----
+## WebApi
 
-## Web API
-
-Responsible for:
-
-- HTTP endpoints;
-- API controllers;
-- dependency injection configuration.
-
-Example:
-
-```
-ServiceRequestsController
-```
+Provides HTTP endpoints, authentication, dependency injection, health checks, Swagger and the browser frontend.
 
 ---
 
-# 5. Database Setup
+# 5. Frontend
 
-## Database Technology
+The frontend is served directly by ASP.NET Core from:
 
-CivicConnect uses:
-
+```text
+CivicConnect/WebApi/wwwroot/
 ```
+
+The main application is available at `/` when the Web API is running.
+
+## Citizen portal
+
+The citizen interface includes:
+
+- Overview dashboard
+- Request statistics
+- Recent requests
+- Submit request
+- My requests
+- Request details
+- Request status information
+- Notifications
+- Search/filtering where supported
+
+## Staff portal
+
+The staff interface includes:
+
+- Work overview
+- Request queue
+- My assigned requests
+- Request details
+- Status updates
+- Notifications
+- Profile/logout controls
+
+## Administrator portal
+
+The administrator interface includes:
+
+- Management overview
+- Service request management
+- Request queue
+- Reports
+- Activity history
+- Notifications
+- Staff and assignment management
+- Status management
+
+The frontend is responsive and designed around a service-management dashboard layout with a persistent navigation area, KPI cards, tables, status badges, request timelines and operational panels.
+
+---
+
+# 6. Authentication and Access
+
+Citizens do not require authentication.
+
+Staff and administrators authenticate through the staff/admin login page. The login page uses one login form; users do not select a role manually. The backend determines the account role after authentication.
+
+The password field includes a Show/Hide control.
+
+Authenticated Staff/Admin users see logout instead of the Staff/Admin sign-in option. After logout, they can return to the login page and authenticate again.
+
+The Web API uses ASP.NET Core cookie authentication for the administrator/staff console.
+
+> Development/demo credentials must not be reused in production. Production credentials should be stored in an appropriate secret/identity-management system.
+
+---
+
+# 7. API Endpoints
+
+Current application endpoints include:
+
+## Departments
+
+```http
+GET /api/Departments
+```
+
+## Notifications
+
+```http
+GET /api/Notifications
+```
+
+## Service Requests
+
+```http
+GET   /api/ServiceRequests
+POST  /api/ServiceRequests
+GET   /api/ServiceRequests/{id}
+PATCH /api/ServiceRequests/{id}/status
+```
+
+## Statuses
+
+```http
+GET /api/Statuses
+```
+
+## Health
+
+```http
+GET /health/live
+GET /health/ready
+```
+
+The liveness endpoint verifies that the application process is running. The readiness endpoint includes database connectivity.
+
+## Swagger
+
+When running in Development or Staging, Swagger is available at:
+
+```text
+/swagger
+```
+
+---
+
+# 8. Service Request Lifecycle
+
+Status changes are controlled by the domain/application lifecycle rules rather than by the frontend directly changing database values.
+
+```text
+Frontend / API request
+        ↓
+ServiceRequestLifecycleService
+        ↓
+StatusTransitionPolicy
+        ↓
+CivicConnectDbContext
+        ↓
 SQL Server
-+
-Entity Framework Core
 ```
 
-The database contains entities including:
+Valid transitions are accepted according to the configured policy.
 
+Invalid transitions are rejected. For example, the previously demonstrated transition:
+
+```text
+Assigned → Closed
 ```
-Users
 
-Roles
-
-ServiceRequests
-
-RequestStatuses
-
-StatusHistories
-
-Notifications
-
-Assignments
-
-Departments
-```
+is rejected when it is not permitted by the lifecycle policy and returns a `400 Bad Request` response.
 
 ---
 
-# 6. Configuration
+# 9. Status History and Notifications
 
-The database connection string is configured in:
+A successful status change can produce the following flow:
 
+```text
+Service Request Status Change
+          ↓
+ServiceRequestStatusChangedEvent
+          ↓
+ServiceRequestStatusChangedHandler
+          ↓
+NotificationService
+          ↓
+Notifications table
 ```
+
+Status history records preserve the lifecycle activity associated with a Service Request.
+
+This supports traceability of:
+
+- Service Request
+- Status
+- User responsible for the change
+- Change timestamp
+
+---
+
+# 10. Database
+
+CivicConnect uses SQL Server through Entity Framework Core.
+
+The persistence model includes areas for:
+
+```text
+Users
+Roles
+Departments
+ServiceRequests
+RequestStatuses
+StatusHistories
+Notifications
+Assignments
+```
+
+The database connection is configured through:
+
+```text
+CivicConnect/WebApi/appsettings.json
+```
+
+Do not commit production passwords or secrets to source control.
+
+---
+
+# 11. Configuration
+
+The application uses environment-specific configuration files:
+
+```text
 WebApi/appsettings.json
+WebApi/appsettings.Development.json
+WebApi/appsettings.Staging.json
 ```
 
-Example:
+Database lifecycle behaviour is controlled by configuration:
 
 ```json
-{
-  "ConnectionStrings": {
-    "CivicConnectDatabase":
-    "Server=(localdb)\\MSSQLLocalDB;Database=CivicConnectDb;Trusted_Connection=True;"
-  }
+"Database": {
+  "ApplyMigrations": false,
+  "SeedData": false
 }
 ```
 
+For development/staging, these values may be enabled as required by the setup instructions.
+
+Production environments should not automatically mutate database schema or seed development data.
+
 ---
 
-# 7. Running the Application
+# 12. Running Locally
 
 ## Requirements
 
 Install:
 
-- Visual Studio 2022+
-- .NET SDK
-- SQL Server LocalDB
+- Visual Studio 2022 or later
+- .NET 8 SDK
+- SQL Server / SQL Server LocalDB
 
----
+Optional for staging:
 
-## Clone Repository
+- Docker Desktop
+- PowerShell
 
-```bash
-git clone <repository-url>
-```
-
----
-
-## Open Solution
+## Open the solution
 
 Open:
 
+```text
+CivicConnect/CivicConnect.sln
 ```
-CivicConnect.sln
-```
 
----
-
-## Restore Packages
-
-Visual Studio automatically restores packages.
-
-Alternatively:
+## Restore
 
 ```bash
 dotnet restore
 ```
 
----
+## Database
 
-## Apply Database Migration
+Configure the `CivicConnectDatabase` connection string in the appropriate appsettings/environment configuration.
 
-Open Package Manager Console:
+If migrations are required and the project is configured for migration execution, use the project's EF Core migration process before running the API.
 
-Run:
+## Run
 
-```powershell
-Update-Database
-```
+Set `WebApi` as the startup project and run with Visual Studio.
 
----
+The exact HTTPS port is defined by the active launch profile. Use the URL shown by Visual Studio/ASP.NET Core.
 
-## Run Application
+The application root `/` opens the frontend.
 
-Set:
-
-```
-WebApi
-```
-
-as the startup project.
-
-Run:
-
-```
-Ctrl + F5
-```
-
-Swagger should open.
+Swagger is available at `/swagger` in Development/Staging.
 
 ---
 
-# 8. API Documentation
-
-Swagger/OpenAPI is available when running in development mode.
-
-Available endpoint:
-
-## Update Service Request Status
-
-```
-PATCH
-
-/api/ServiceRequests/{id}/status
-```
-
-Request:
-
-```json
-{
-  "newStatusId":
-  "44444444-4444-4444-4444-444444444444",
-
-  "changedByUserId":
-  "22222222-2222-2222-2222-222222222222"
-}
-```
-
----
-
-# 9. Lifecycle Governance
-
-CivicConnect prevents invalid service-request transitions.
-
-The lifecycle flow is controlled through:
-
-```
-IStatusTransitionPolicy
-
-        ↓
-
-StatusTransitionPolicy
-
-        ↓
-
-ServiceRequestLifecycleService
-```
-
-Example:
-
-Allowed:
-
-```
-Submitted
-     |
-     v
-Assigned
-```
-
-Rejected:
-
-```
-Assigned
-     |
-     X
-     v
-Closed
-```
-
-Invalid transitions return:
-
-```
-400 Bad Request
-```
-
----
-
-# 10. Notification Architecture
-
-Notifications are separated from request lifecycle logic.
-
-Flow:
-
-```
-ServiceRequest Status Change
-
-        ↓
-
-ServiceRequestStatusChangedEvent
-
-        ↓
-
-ServiceRequestStatusChangedHandler
-
-        ↓
-
-INotificationService
-
-        ↓
-
-NotificationService
-
-        ↓
-
-Notifications Table
-```
-
-The architecture allows future support for:
-
-- email notifications;
-- SMS notifications;
-- push notifications.
-
----
-
-# 11. External Location Provider Boundary
-
-CivicConnect isolates external location providers behind:
-
-```
-ILocationResolver
-```
-
-Implementation:
-
-```
-Application
-
-ILocationResolver
-
-        ↑
-
-Infrastructure
-
-ExternalLocationResolver
-```
-
-This prevents direct dependency on a specific mapping provider.
-
-Live geocoding integration remains future work.
-
----
-
-# 12. Testing
+# 13. Automated Testing
 
 The solution contains:
 
-```
-CivicConnect.Domain.Tests
-
+```text
+CivicConnect.Api.Tests
 CivicConnect.Application.Tests
-
+CivicConnect.Domain.Tests
 CivicConnect.Infrastructure.Tests
 ```
 
-Tests cover:
+Tests cover areas including:
 
-- lifecycle transition rules;
-- invalid transition rejection;
-- persistence behaviour;
-- notification creation;
-- location provider boundary.
+- Status-transition rules
+- Service-request lifecycle behaviour
+- Notification behaviour
+- Persistence
+- Location-provider boundaries
+- API/integration behaviour
+- Authentication/authorisation checks
+- Health and observability
+- End-to-end lifecycle behaviour
 
-Run tests:
+Run all tests from Visual Studio:
 
-Visual Studio:
-
-```
-Test
- ↓
-Test Explorer
- ↓
-Run All Tests
+```text
+Test → Test Explorer → Run All Tests
 ```
 
 or:
@@ -474,145 +472,284 @@ or:
 dotnet test
 ```
 
----
-
-# 13. Milestone 2 Verification Evidence
-
-The following behaviour has been demonstrated:
-
-## Valid Transition
-
-```
-Submitted → Assigned
-```
-
-Result:
-
-```
-204 No Content
-```
-
-Evidence:
-
-- API response;
-- updated ServiceRequest;
-- StatusHistory record;
-- Notification record.
+Do not claim a test result in project documentation until the test has actually been executed against the current release candidate.
 
 ---
 
-## Invalid Transition
+# 14. End-to-End Testing
 
+The critical Service Request journey is intended to verify the integrated path:
+
+```text
+Create Service Request
+        ↓
+Submitted
+        ↓
+Assigned
+        ↓
+In Progress
+        ↓
+Resolved
+        ↓
+Closed
 ```
-Assigned → Closed
-```
 
-Result:
+The E2E verification checks the resulting Service Request state and associated StatusHistory/Notification behaviour.
 
-```
-400 Bad Request
-```
-
-Evidence:
-
-- transition rejected;
-- request unchanged;
-- no additional history;
-- no additional notification.
+A negative E2E scenario verifies that an invalid transition is rejected without incorrectly changing the request state.
 
 ---
 
-# 14. Repository Structure
+# 15. Black-Box Testing
 
+The M3 testing strategy uses appropriate black-box techniques for the selected behaviours, including:
+
+- Equivalence Partitioning
+- Boundary Value Analysis
+- Decision Table Testing
+- State-Transition Testing
+
+State-transition testing is particularly relevant to the Service Request lifecycle because not every status can transition directly to every other status.
+
+---
+
+# 16. Performance Testing
+
+A JMeter test plan is included at:
+
+```text
+performance/CivicConnect_Performance.jmx
 ```
-CivicConnect
 
-│
+The configured exercise uses a controlled read-only workload so that performance testing does not deliberately corrupt Service Request lifecycle state.
 
-├── Domain
+The current test configuration is intended as an initial performance baseline rather than a production capacity claim.
 
-├── Application
+Results must be generated from an actual JMeter run and retained as evidence.
 
-├── Infrastructure
+---
 
-├── WebApi
+# 17. Production Readiness and Operations
 
-├── Tests
+Member 3 operational work includes:
 
-├── docs
+## Health checks
 
-│   ├── architecture
+```text
+/health/live
+/health/ready
+```
 
-│   ├── decisions
+## Observability
 
-│   ├── governance
+Request logging middleware records operational request information including:
 
-│   ├── requirements
+- HTTP method
+- Request path
+- Response status
+- Elapsed time
+- Correlation ID
 
-│   └── technology
+Sensitive request bodies and authorization headers are not intended to be logged.
 
-│
+## Release checks
 
-├── README.md
+```text
+scripts/release-check.ps1
+```
 
-└── CivicConnect.sln
+The release check performs restore, Release build validation and automated tests.
+
+## Staging
+
+```text
+docker-compose.staging.yml
+scripts/staging-start.ps1
+scripts/staging-stop.ps1
+scripts/staging-verify.ps1
+```
+
+## Recovery
+
+```text
+scripts/recovery-drill.ps1
+docs/operations/recovery-runbook.md
+```
+
+## Security/quality checks
+
+```text
+scripts/check_secrets.py
+scripts/check_dependencies.py
 ```
 
 ---
 
-# 15. Known Limitations
+# 18. CI/CD
 
-The following features remain future work:
+The GitHub Actions workflow is located at:
 
-- authentication and authorisation;
-- complete citizen request submission workflow;
-- staff assignment workflows;
-- search and filtering;
-- reporting dashboards;
-- external notification providers;
-- live external geolocation provider;
-- production deployment.
+```text
+.github/workflows/ci.yml
+```
+
+The workflow is intended to provide repeatable automated checks such as:
+
+```text
+Restore
+  ↓
+Build
+  ↓
+Tests
+  ↓
+Security / dependency checks
+```
+
+CI results should be treated as execution evidence only when the workflow has actually completed successfully for the release candidate.
 
 ---
 
-# 16. Contribution Workflow
+# 19. Documentation and Governance
 
-Development follows GitHub-based collaboration:
+The repository contains supporting M3 documentation including:
 
+```text
+docs/governance/PED.md
+docs/governance/rtm.md
+docs/governance/risk-register.md
+docs/governance/defect-register.md
+docs/governance/technical-debt-register.md
+docs/governance/ai-usage-register.md
 ```
+
+Operational documentation includes:
+
+```text
+docs/operations/production-readiness.md
+docs/operations/observability.md
+docs/operations/recovery-runbook.md
+docs/operations/performance-test.md
+```
+
+Evidence documentation includes:
+
+```text
+docs/evidence/member3-execution-checklist.md
+docs/evidence/member3-final-evidence-index.md
+docs/evidence/member3-status.md
+docs/evidence/release-candidate.md
+```
+
+These documents support the final milestone evidence package.
+
+---
+
+# 20. Repository Workflow
+
+Development follows a branch and pull-request workflow:
+
+```text
 Feature Branch
-
-        ↓
-
+      ↓
 Pull Request
-
-        ↓
-
+      ↓
 Review
+      ↓
+Integration
+      ↓
+Main
+```
 
+Pull requests should contain enough information to explain the change and the verification performed.
+
+---
+
+# 21. Security Notes
+
+- Do not commit real passwords, API keys or production secrets.
+- Use environment variables or an appropriate secret-management system for deployment credentials.
+- Staff/admin operations must remain protected by authorisation.
+- Status changes must continue to pass through lifecycle/business rules.
+- Logging should not expose passwords, authentication headers or sensitive request bodies.
+- Development/demo credentials are not production credentials.
+
+---
+
+# 22. Known Limitations / Future Enhancements
+
+The following areas can be expanded beyond the current release candidate where required:
+
+- Production-grade identity provider integration
+- Advanced role/permission administration
+- Live external location/geocoding provider
+- External email/SMS/push notification providers
+- Advanced analytics and reporting
+- Production cloud deployment
+- Production-scale performance and capacity testing
+
+These are distinct from the current implemented release-candidate functionality and should not be presented as already completed unless corresponding implementation/evidence exists.
+
+---
+
+# 23. Milestone 3 Contribution Summary
+
+The integrated M3 release candidate includes the following Member 3 contribution areas:
+
+```text
+Production Readiness
         ↓
-
-Integration Branch
-
+Deployment / Staging
         ↓
+Health Checks
+        ↓
+Observability
+        ↓
+Security / Quality Automation
+        ↓
+Release Validation
+        ↓
+Recovery Documentation / Drill
+        ↓
+Frontend Integration
+        ↓
+Staff / Admin Operational Console
+```
 
-Main Branch
+The remaining submission evidence must be based on actual execution of the release candidate, including final test, staging, recovery and performance results.
+
+---
+
+# 24. Quick Start
+
+For the normal Visual Studio workflow:
+
+```text
+1. Open CivicConnect.sln
+2. Restore NuGet packages
+3. Confirm SQL Server/database configuration
+4. Set WebApi as startup project
+5. Rebuild Solution
+6. Run Test Explorer → Run All Tests
+7. Run WebApi
+8. Open /
+9. Test Citizen workflow
+10. Test Staff/Admin login and logout
+11. Test request lifecycle
+12. Verify database changes
+13. Test /health/live and /health/ready
+14. Run release/staging checks when ready
+```
+
+For staging and M3 operational verification, follow the instructions in:
+
+```text
+SETUP_M3.md
 ```
 
 ---
 
-# 17. Milestone 2 Status
+# CivicConnect
 
-Current baseline includes:
+**SEN381 — Milestone 3 Release Candidate**
 
-✅ Architecture baseline  
-✅ Technology selection  
-✅ Persistence strategy  
-✅ Design decisions  
-✅ Initial implementation  
-✅ API endpoint  
-✅ Lifecycle governance  
-✅ Notification architecture  
-✅ Automated verification  
-
-The system will continue evolving in future milestones.
+Integrated civic service-request platform with a Web API, SQL Server persistence, governed request lifecycle, automated verification, responsive frontend, staff/admin operations and production-readiness tooling.
