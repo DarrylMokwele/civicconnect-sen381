@@ -1,36 +1,47 @@
 name: Member 2 CI
+
 on:
   push:
     branches: [main, develop, 'feature/**', 'fix/**']
   pull_request:
     branches: [main, develop]
   workflow_dispatch:
+
 permissions:
   contents: read
+
 jobs:
   verify:
     name: build-test-quality-security
     runs-on: ubuntu-latest
     timeout-minutes: 15
+
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
       - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '8.0.x'
+
       - name: Restore with dependency audit
-        run: dotnet restore CivicConnect/CivicConnect.sln -p:NuGetAudit=true -p:NuGetAuditMode=all -p:WarningsAsErrors="NU1901;NU1902;NU1903;NU1904"
+        run: dotnet restore CivicConnect/CivicConnect.sln -p:NuGetAudit=true -p:NuGetAuditMode=all -warnaserror
+
       - name: Build and compiler quality gate
         run: dotnet build CivicConnect/CivicConnect.sln --no-restore -c Release -warnaserror -p:EnableNETAnalyzers=true -p:AnalysisLevel=latest
+
       - name: Automated tests
         run: dotnet test CivicConnect/CivicConnect.sln --no-build --no-restore -c Release --logger trx --results-directory TestResults
+
       - name: Dependency vulnerability report and fail-closed gate
         run: |
           dotnet list CivicConnect/CivicConnect.sln package --vulnerable --include-transitive --format json > dependency-audit.json
           python3 scripts/check_dependencies.py dependency-audit.json
+
       - name: Secrets and sensitive file check (includes history)
         run: python3 scripts/check_secrets.py --history
+
       - name: Preserve execution evidence
         if: always()
         uses: actions/upload-artifact@v4
